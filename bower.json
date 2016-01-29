@@ -4,7 +4,8 @@
   "dependencies": {
     "modernizr": "~2.8.1",
     "phaser": "^2.4.4",
-    "lodash": "^4.0.1"
+    "lodash": "^4.0.1",
+    "normalize-scss": "^3.0.3"
   },
   "devDependencies": {
     "chai": "^3.5.0",
