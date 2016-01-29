@@ -2,7 +2,9 @@
   "name": "gamejamsuperduper",
   "private": true,
   "dependencies": {
-    "modernizr": "~2.8.1"
+    "modernizr": "~2.8.1",
+    "phaser": "^2.4.4",
+    "lodash": "^4.0.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
