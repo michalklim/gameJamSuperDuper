@@ -27,7 +27,24 @@ gulp.task('scripts', () => {
   return gulp.src('app/scripts/**/*.js')
     .pipe($.plumber())
     .pipe($.sourcemaps.init())
-    .pipe($.babel())
+    .pipe($.webpack({
+      module: {
+        loaders: [
+          {
+            exclude: /(node_modules|bower_components)/,
+            loader: 'babel',
+            query: {
+              presets: ['es2015']
+            }
+          },
+        ],
+      },
+      output: {
+        path: __dirname + "/.tmp",
+        filename: "game.js"
+      }
+    }))
+
     .pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest('.tmp/scripts'))
     .pipe(reload({stream: true}));
