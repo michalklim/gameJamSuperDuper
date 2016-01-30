@@ -13,8 +13,6 @@ export default class Play extends Phaser.State {
       });
       this.game.stage.addChild(this.planet);
 
-        this.game.time.slowMotion = 1;
-
         this.hud = new HUD({
           game: this.game
         });
