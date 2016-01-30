@@ -2,7 +2,7 @@ function Disaster(villages) {
 
   var _villages = villages;
 
-  var _disasters = [""];
+  var _disasters = ["locust"];
 
   var getRandomRitualTimeout = function(){
     return 3000; //wylosowane przez rzut koscia, gwarantowana losowosc

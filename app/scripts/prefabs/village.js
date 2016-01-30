@@ -17,11 +17,11 @@ export default class Village extends Phaser.Sprite {
     this.natives.enableBody = true;
   }
 
-  startRitual(ritual) {
+  startDisaster(disaster) {
     this.ritual = ritual;
   }
 
-  stopRitual() {
+  stopDisaster(miracle) {
       //make the village safe
   }
 
