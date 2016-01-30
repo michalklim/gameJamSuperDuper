@@ -10,6 +10,7 @@ export default class Play extends Phaser.State {
     create() {
       // constants
       this.villageNumber = 8;
+      this.game.time.slowMotion = 2;
 
       this.game.globalScore = new GlobalScore();
 
@@ -38,14 +39,6 @@ export default class Play extends Phaser.State {
       });
       this.game.stage.addChild(this.powersHud);
       this.game.stage.addChild(this.planet);
-
-      this.game.input.onDown.add(() => {
-          this.game.time.slowMotion = 1;
-      });
-
-      this.game.input.onUp.add(() => {
-          this.game.time.slowMotion = 3;
-      });
 
       this.overlayBitmap = this.add.bitmapData(this.game.width, this.game.height);
       this.overlayBitmap.ctx.fillStyle = '#fff';
