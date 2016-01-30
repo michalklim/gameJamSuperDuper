@@ -5,18 +5,14 @@ import HUD from '../prefabs/hud';
 export default class Play extends Phaser.State {
 
     create() {
-      this.game.physics.startSystem(Phaser.Physics.BOX2D);
-      this.game.physics.box2d.gravity.y = 500;
-      this.game.physics.box2d.restitution = 0.8;
-      this.game.physics.box2d.setBoundsToWorld();
-
         this.planet = this.add.sprite(this.world.centerX ,0 , 'planet');
-        this.planet.body.setCircle(this.planet.width / 2);
+        this.physics.arcade.enable(this.planet);
 
         this.game.time.slowMotion = 1;
 
         this.enemies = this.add.group();
         this.enemies.enableBody = true;
+
 
         this.player = new Player({
             game: this.game,
