@@ -87,4 +87,10 @@ export default class Play extends Phaser.State {
         });
         timer.start();
     }
+
+    render(){
+      //this.game.debug.spriteInfo(this.overlay, 32, 32);
+      this.game.debug.cameraInfo(this.game.camera,32,32);
+      //console.log("ala ma kota");
+    }
 }
