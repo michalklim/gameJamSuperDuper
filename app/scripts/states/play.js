@@ -2,7 +2,6 @@ import Planet from '../prefabs/planet';
 import Village from '../prefabs/village';
 import PowersHud from '../prefabs/powersHud';
 import GlobalScore from '../prefabs/globalScore';
-import VulkanHud from '../prefabs/vulkanHud';
 import Disaster from '../prefabs/disaster'
 
 export default class Play extends Phaser.State {
@@ -12,8 +11,6 @@ export default class Play extends Phaser.State {
       this.villageNumber = 8;
 
       this.game.globalScore = new GlobalScore();
-
-        //this.vulkanHud = new VulkanHud(this.game,this.globalScore);
 
       //background
       this.background = this.game.add.image(0, 0, 'bg');
@@ -46,6 +43,8 @@ export default class Play extends Phaser.State {
       this.disasters.run();
 
       this.game.stage.addChild(this.planet);
+        this.game.add.sprite(this.game.width-350, 30, 'vulcan');
+
       this.disasters.run();
     }
 
