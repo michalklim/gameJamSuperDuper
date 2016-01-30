@@ -9,16 +9,17 @@ export default class Play extends Phaser.State {
       // constants
       this.villageNumber = 10;
       this.targetDim = window.innerWidth * 1.6;
+
       //background
       this.background = this.game.add.image(0, 0, 'bg');
       this.background.scale.setTo(window.innerWidth / this.background.texture.width);
 
-      console.log(this.background);
-
+      //planet
+      console.log(this.world);
       this.planet = new Planet({
         game: this.game,
         x: this.world.centerX,
-        y: this.world.centerY + window.innerHeight * 1.5,
+        y: this.world.height * 1.5,
         asset: 'planet'
       });
       this.game.stage.addChild(this.planet);

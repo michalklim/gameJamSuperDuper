@@ -24,7 +24,7 @@ export default class PowersBtn extends Phaser.Sprite {
         this.events.onDragStop.add(this.onDragStop, this);
     }
     onDragStart() {
-        this.dragMusic.fadeIn(1000);
+        this.dragMusic.fadeIn(300);
     }
     onDragStop(item) {
         this.dragMusic.stop();

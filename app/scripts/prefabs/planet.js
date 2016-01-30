@@ -5,7 +5,7 @@ export default class Planet extends Phaser.Sprite {
     super(game, x, y, asset);
 
     this.game = game;
-    this.targetDim = window.innerWidth * 1.6;
+    this.targetDim = window.innerWidth * 0.8;
     this.scale.setTo(this.targetDim / this.texture.width);
     this.anchor.setTo(0.5);
     this.game.physics.arcade.enable(this);
@@ -13,6 +13,10 @@ export default class Planet extends Phaser.Sprite {
 
   getCenterCircle() {
     return new Circle(this.body.x, this.body.y, this.width/2);
+  }
+
+  update() {
+
   }
 }
 
