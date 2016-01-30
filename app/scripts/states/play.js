@@ -10,6 +10,7 @@ export default class Play extends Phaser.State {
     create() {
       // constants
       this.villageNumber = 8;
+      this.game.time.slowMotion = 2;
 
       this.game.globalScore = new GlobalScore();
 
@@ -31,6 +32,8 @@ export default class Play extends Phaser.State {
       this.villages = this.add.group();
 
       var vlgs = this.buildVillages();
+      this.game.villages = vlgs;
+
       this.villages.addMultiple(vlgs);
       this.disasters = Disaster(vlgs);
 
@@ -44,6 +47,7 @@ export default class Play extends Phaser.State {
       this.disasters.run();
 
       this.game.stage.addChild(this.planet);
+      this.disasters.run();
     }
 
 

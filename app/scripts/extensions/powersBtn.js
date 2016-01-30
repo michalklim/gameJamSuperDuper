@@ -1,10 +1,11 @@
 export default class PowersBtn extends Phaser.Sprite {
 
-    constructor({game, x, y, asset, label, style, powerSound}) {
+    constructor({game, x, y, asset, label, style, powerSound, name}) {
         super(game, x, y, asset);
 
         this.anchor.setTo(0.5);
 
+        this.name = name;
         this.label = label;
         this.style = style;
         this.powerSound = powerSound;
@@ -27,9 +28,20 @@ export default class PowersBtn extends Phaser.Sprite {
         this.dragMusic.fadeIn(300);
     }
     onDragStop(item) {
-        this.dragMusic.stop();
+      console.log('item: ' + item);
+      this.dragMusic.stop();
 
-        item.x = this.initialPos.x;
-        item.y = this.initialPos.y;
+      let villageToRescue = _.find(this.game.villages, (village) => {
+        return Phaser.Rectangle.intersects(this.getBounds(), village.getBounds());
+      });
+
+      if(!(_.isUndefined(villageToRescue) || _.isNull(villageToRescue))) {
+        console.log("nanana");
+
+        villageToRescue.stopDisaster(item.name);
+      }
+
+      item.x = this.initialPos.x;
+      item.y = this.initialPos.y;
     }
 }
