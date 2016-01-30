@@ -12,56 +12,65 @@ export default class PowersHud extends Phaser.Group {
             fill: 'white',
             align: 'center'
         });
+        this.activate();
+        this.dragDropTestCircle = null;
+    }
+    activate() {
+        this.addPowers();
+    }
 
+    addPowers() {
+        const POS_X_STEP = 68;
+        const POS_Y = 68;
 
-        this.fire = new PowersBtn({
+        const fire = new PowersBtn({
             game: this.game,
-            x: this.game.world.centerX,
-            y: this.game.world.centerY,
+            x: this.game.world.centerX - POS_X_STEP * 2,
+            y: POS_Y,
             asset: 'powersBtn',
             powerSound: 'fireSound'
         });
 
-        this.add(this.fire);
+        this.add(fire);
 
-        this.water = new PowersBtn({
+        const water = new PowersBtn({
             game: this.game,
-            x: this.game.world.centerX,
-            y: this.game.world.centerY,
+            x: this.game.world.centerX - POS_X_STEP,
+            y: POS_Y,
             asset: 'powersBtn',
             powerSound: 'waterSound'
         });
 
-        this.add(this.water);
+        this.add(water);
 
-        this.lighting = new PowersBtn({
+        const lighting = new PowersBtn({
             game: this.game,
             x: this.game.world.centerX,
-            y: this.game.world.centerY,
+            y: POS_Y,
             asset: 'powersBtn',
             powerSound: 'thunderSound'
         });
 
-        this.add(this.lighting);
+        this.add(lighting);
 
-        this.wind = new PowersBtn({
+        const wind = new PowersBtn({
             game: this.game,
-            x: this.game.world.centerX,
-            y: this.game.world.centerY,
+            x: this.game.world.centerX + POS_X_STEP,
+            y: POS_Y,
             asset: 'powersBtn',
             powerSound: 'windSound'
         });
 
-        this.add(this.wind);
+        this.add(wind);
 
-        this.ground = new PowersBtn({
+        const ground = new PowersBtn({
             game: this.game,
-            x: this.game.world.centerX,
-            y: this.game.world.centerY,
+            x: this.game.world.centerX + POS_X_STEP * 2,
+            y: POS_Y,
             asset: 'powersBtn',
             powerSound: 'earthSound'
         });
 
-        this.add(this.ground);
+        this.add(ground);
     }
 };
