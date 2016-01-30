@@ -11,7 +11,7 @@ export default class Play extends Phaser.State {
       // constants
       this.villageNumber = 10;
 
-        this.globalScore = new GlobalScore();
+        this.game.globalScore = new GlobalScore();
         //this.vulkanHud = new VulkanHud(this.game,this.globalScore);
 
       this.planet = new Planet({
@@ -25,7 +25,7 @@ export default class Play extends Phaser.State {
       // add villages
       this.villages = this.add.group();
       this.villages.addMultiple(this.buildVillages());
-        
+
         this.planet.addChild(this.villages);
 
         this.powersHud = new PowersHud({
@@ -60,7 +60,7 @@ export default class Play extends Phaser.State {
     update() {
         this.planet.rotation += 0.01;
 
-        if(this.globalScore.failedDisasterLimitReached()){
+        if(this.game.globalScore.failedDisasterLimitReached()){
             this.gameOver();
         }
     }
