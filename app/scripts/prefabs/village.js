@@ -22,10 +22,13 @@ export default class Village extends Phaser.Sprite {
   }
 
   stopRitual() {
-
+      //make the village safe
   }
 
   destroy() {
-
+      // if village is safe
+          //do nothing
+      //else
+        //destroy
   }
 }
