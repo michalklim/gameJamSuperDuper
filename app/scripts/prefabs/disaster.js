@@ -21,6 +21,9 @@ export default function Disaster(villages) {
   var _disasters = DisastersAndMiracles;
 
   var getRandomRitualTimeout = function(){
+
+    return Math.floor((Math.random() * 10) + 4) * 1000;
+
     return 3000; //wylosowane przez rzut koscia, gwarantowana losowosc
   };
 
