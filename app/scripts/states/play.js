@@ -21,6 +21,8 @@ export default class Play extends Phaser.State {
       this.villages = this.add.group();
       this.villages.addMultiple(this.buildVillages());
 
+        this.planet.addChild(this.villages);
+
 
         this.powersHud = new PowersHud({
             game: this.game
@@ -50,15 +52,15 @@ export default class Play extends Phaser.State {
 
       this.music = this.game.add.audio('playMusic');
       this.gameOverSound = this.add.sound('gameOver');
-
-      //this.music.loopFull();
     }
 
     update() {
+        this.planet.rotation += 0.01;
     }
 
     buildVillages() {
       let planetCircle = this.planet.getCenterCircle();
+      console.log("planetCircle.x:" + planetCircle.x + " ; planetCircle.y:" + planetCircle.y);
 
       let angleScope = 360/this.villageNumber;
       return _.map(_.range(this.villageNumber), (number) => {
@@ -67,7 +69,6 @@ export default class Play extends Phaser.State {
         let x = planetCircle.x + Math.cos(angle)*planetCircle.r;
         let y = planetCircle.y + Math.sin(angle)*planetCircle.r;
 
-        console.log("planetCircle.y:" + planetCircle.y + " ; angle:" + angle + " ; r:"+ planetCircle.r +  " ; x:"+x, " ; y:"+y);
 
         let sets = {
           game: this.game,
