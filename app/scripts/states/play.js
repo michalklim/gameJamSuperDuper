@@ -1,12 +1,19 @@
 import Player from '../prefabs/player';
 import Enemy from '../prefabs/enemy';
 import HUD from '../prefabs/hud';
+import Planet from '../prefabs/planet';
 
 export default class Play extends Phaser.State {
 
     create() {
-        this.planet = this.add.sprite(this.world.centerX ,0 , 'planet');
-        this.physics.arcade.enable(this.planet);
+
+      this.planet = new Planet({
+        game: this.game,
+        x: this.world.centerX,
+        y: this.world.centerY + window.innerHeight * 1.5,
+        asset: 'planet'
+      });
+      this.game.stage.addChild(this.planet);
 
         this.game.time.slowMotion = 1;
 
