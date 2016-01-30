@@ -1,4 +1,3 @@
-import HUD from '../prefabs/hud';
 import Planet from '../prefabs/planet';
 import Village from '../prefabs/village';
 import PowersHud from '../prefabs/powersHud';
@@ -38,10 +37,6 @@ export default class Play extends Phaser.State {
       this.game.stage.addChild(this.powersHud);
       this.game.stage.addChild(this.planet);
 
-      this.hud = new HUD({
-          game: this.game
-      });
-
       this.game.input.onDown.add(() => {
           this.game.time.slowMotion = 1;
       });
@@ -66,7 +61,7 @@ export default class Play extends Phaser.State {
 
     update() {
         this.planet.rotation += 0.01;
-
+        this.powersHud.updateScore(this.game.globalScore.miracles);
         if(this.game.globalScore.failedDisasterLimitReached()){
             this.disasters.stop();
             this.gameOver();

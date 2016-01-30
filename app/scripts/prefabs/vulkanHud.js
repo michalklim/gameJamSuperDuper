@@ -1,7 +1,8 @@
-export default class VulkanHud extends Phaser.Group {
-    constructor({ game, globalScore }) {
-        super(game);
+export default class VulkanHud  extends Phaser.Sprite {
+
+    constructor({ game, x, y, asset}) {
+        super(game, x, y, asset);
         this.game = game;
-        this.globalScore = globalScore;
     }
+
 };
