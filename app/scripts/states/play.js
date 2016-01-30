@@ -1,10 +1,18 @@
 import HUD from '../prefabs/hud';
+import Planet from '../prefabs/planet';
 import Village from '../prefabs/village';
 
 export default class Play extends Phaser.State {
 
     create() {
-      this.game.time.slowMotion = 1;
+
+      this.planet = new Planet({
+        game: this.game,
+        x: this.world.centerX,
+        y: this.world.centerY + window.innerHeight * 1.5,
+        asset: 'planet'
+      });
+      this.game.stage.addChild(this.planet);
 
       this.villages = this.add.group();
 
