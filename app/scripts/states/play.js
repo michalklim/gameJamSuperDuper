@@ -6,7 +6,7 @@ export default class Play extends Phaser.State {
 
     create() {
       // constants
-      this.eventAreasAngles = [330, 60, 180, 360];
+      this.villageNumber = 10;
 
       this.planet = new Planet({
         game: this.game,
@@ -18,27 +18,8 @@ export default class Play extends Phaser.State {
 
       // add villages
       this.villages = this.add.group();
-      let planetCircle = this.planet.getCenterCircle();
+      this.villages.addMultiple(this.buildVillages());
 
-
-      console.log("planetCircle.x: " + planetCircle.x);
-      console.log("planetCircle.y: " + planetCircle.y);
-
-      _.forEach(_.range(10), () => {
-
-        let angle = _.random(245, this.eventAreasAngles[0]) * (Math.PI / 180);
-        let x = planetCircle.x + Math.cos(angle)*planetCircle.r;
-        let y = planetCircle.y + Math.sin(angle)*planetCircle.r;
-
-        console.log("planetCircle.y:" + planetCircle.y + " ; angle:" + angle + " ; r:"+ planetCircle.r +  " ; x:"+x, " ; y:"+y);
-
-        let sets = {
-          game: this.game,
-          x: x,
-          y: y
-        };
-        this.addVillage(sets);
-      });
 
       this.hud = new HUD({
           game: this.game
@@ -69,52 +50,27 @@ export default class Play extends Phaser.State {
     update() {
     }
 
-    addVillage(sets) {
-      let village = new Village(sets);
-      this.villages.add(village);
+    buildVillages() {
+      let planetCircle = this.planet.getCenterCircle();
 
-      this.game.debug.spriteInfo(village, 32, 64);
-    }
+      let angleScope = 360/this.villageNumber;
+      return _.map(_.range(this.villageNumber), (number) => {
 
-    hitEffect(obj, color) {
-        let tween = this.game.add.tween(obj);
-        let emitter = this.game.add.emitter();
-        let emitterPhysicsTime = 0;
-        let particleSpeed = 100;
-        let maxParticles = 10;
+        let angle = _.random(number * angleScope, (number + 1) * angleScope) * (Math.PI / 180);
+        let x = planetCircle.x + Math.cos(angle)*planetCircle.r;
+        let y = planetCircle.y + Math.sin(angle)*planetCircle.r;
 
-        tween.to({tint: 0xff0000}, 100);
-        tween.onComplete.add(() => {
-            obj.tint = 0xffffff;
-        });
-        tween.start();
+        console.log("planetCircle.y:" + planetCircle.y + " ; angle:" + angle + " ; r:"+ planetCircle.r +  " ; x:"+x, " ; y:"+y);
 
-        emitter.x = obj.x;
-        emitter.y = obj.y;
-        emitter.gravity = 0;
-        emitter.makeParticles('particle');
-
-        if (obj.health <= 0) {
-            particleSpeed = 200;
-            maxParticles = 40;
-            color = 0xff0000;
-        }
-
-        emitter.minParticleSpeed.setTo(-particleSpeed, -particleSpeed);
-        emitter.maxParticleSpeed.setTo(particleSpeed, particleSpeed);
-        emitter.start(true, 500, null, maxParticles);
-        emitter.update = () => {
-            emitterPhysicsTime += this.game.time.physicsElapsed;
-            if(emitterPhysicsTime >= 0.6){
-                emitterPhysicsTime = 0;
-                emitter.destroy();
-            }
-
+        let sets = {
+          game: this.game,
+          x: x,
+          y: y,
+          planetCircle: planetCircle
         };
-        emitter.forEach(particle => particle.tint = color);
-        if (!this.player.alive) {
-            this.game.world.bringToTop(this.overlay);
-        }
+
+        return new Village(sets);
+      });
     }
 
     gameOver(){
