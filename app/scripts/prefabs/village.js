@@ -8,6 +8,8 @@ export default class Village extends Phaser.Sprite {
     this.game = game;
 
     this.anchor.setTo(0.5);
+    //this.targetDim = 500;
+    //this.scale.setTo(this.targetDim / this.texture.width);
 
     this.game.physics.arcade.enable(this);
     this.rotation = game.physics.arcade.angleToXY(this, planetCircle.x, planetCircle.y) - 90 * (Math.PI / 180);

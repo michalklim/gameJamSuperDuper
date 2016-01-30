@@ -96,5 +96,8 @@ export default class Play extends Phaser.State {
     render(){
       //this.game.debug.spriteInfo(this.overlay, 32, 32);
       this.game.debug.cameraInfo(this.game.camera,32,32);
+
+      var village = this.game.villages[0];
+      this.game.debug.spriteBounds(village);
     }
 }
