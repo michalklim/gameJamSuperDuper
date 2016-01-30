@@ -1,3 +1,5 @@
+import Circle from '../models/circleModel'
+
 export default class Planet extends Phaser.Sprite {
   constructor({ game, x, y, asset}) {
     super(game, x, y, asset);
@@ -11,11 +13,7 @@ export default class Planet extends Phaser.Sprite {
   }
 
   getCenterCircle() {
-    return {
-      x: this.body.x,
-      y: this.body.y,
-      r: this.width/2
-    };
+    return new Circle(this.body.x, this.body.y, this.width/2);
   }
 }
 
