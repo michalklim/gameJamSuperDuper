@@ -8,11 +8,12 @@ export default class Play extends Phaser.State {
     create() {
       // constants
       this.villageNumber = 10;
-
+      this.targetDim = window.innerWidth * 1.6;
+      //background
       this.background = this.game.add.image(0, 0, 'bg');
-      this.background.anchor.setTo(0.5, 0.5);
-      this.background.scale.setTo(0.5);
+      this.background.scale.setTo(window.innerWidth / this.background.texture.width);
 
+      console.log(this.background);
 
       this.planet = new Planet({
         game: this.game,
@@ -34,27 +35,10 @@ export default class Play extends Phaser.State {
             x: this.world.centerX
         });
         this.game.stage.addChild(this.powersHud);
-
-
-      this.hud = new HUD({
-          game: this.game
-      });
-
-
-      this.overlayBitmap = this.add.bitmapData(this.game.width, this.game.height);
-      this.overlayBitmap.ctx.fillStyle = '#fff';
-      this.overlayBitmap.ctx.fillRect(0, 0, this.game.width, this.game.height);
-
-      this.overlay = this.add.sprite(0, 0, this.overlayBitmap);
-      this.overlay.visible = true;
-      this.overlay.alpha = 0.75;
-
-      this.music = this.game.add.audio('playMusic');
-      this.gameOverSound = this.add.sound('gameOver');
     }
 
     update() {
-        this.planet.rotation += 0.01;
+      this.planet.rotation += 0.01;
     }
 
     buildVillages() {
@@ -78,24 +62,5 @@ export default class Play extends Phaser.State {
 
         return new Village(sets);
       });
-    }
-
-    gameOver(){
-        this.game.time.slowMotion = 3;
-        this.overlay.visible = true;
-        this.game.world.bringToTop(this.overlay);
-        let timer = this.game.time.create(this.game, true);
-        timer.add(3000, () => {
-            this.music.stop();
-            this.gameOverSound.play();
-            this.game.state.start('Over');
-        });
-        timer.start();
-    }
-
-    render(){
-      //this.game.debug.spriteInfo(this.overlay, 32, 32);
-      this.game.debug.cameraInfo(this.game.camera,32,32);
-      //console.log("ala ma kota");
     }
 }
