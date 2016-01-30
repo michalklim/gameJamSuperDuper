@@ -20,7 +20,6 @@ export default class Play extends Phaser.State {
       this.background.scale.setTo(window.innerWidth / this.background.texture.width);
 
       //planet
-      console.log(this.world);
       this.planet = new Planet({
         game: this.game,
         x: this.world.centerX,
@@ -35,19 +34,20 @@ export default class Play extends Phaser.State {
       this.villages.addMultiple(vlgs);
       this.disasters = Disaster(vlgs);
 
-        this.planet.addChild(this.villages);
+      this.planet.addChild(this.villages);
 
-        this.powersHud = new PowersHud({
-            game: this.game,
-            x: this.world.centerX
-        });
-        this.game.stage.addChild(this.powersHud);
-        this.disasters.run();
+      this.powersHud = new PowersHud({
+          game: this.game,
+          x: this.world.centerX
+      });
+      this.game.stage.addChild(this.powersHud);
+      this.disasters.run();
+
+      this.game.stage.addChild(this.planet);
     }
 
 
     update() {
-        this.planet.rotation += 0.01;
         this.powersHud.updateScore(this.game.globalScore.miracles);
         if(this.game.globalScore.failedDisasterLimitReached()){
             this.disasters.stop();
