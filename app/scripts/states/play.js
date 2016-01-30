@@ -1,9 +1,12 @@
 import HUD from '../prefabs/hud';
+import Village from '../prefabs/village';
 
 export default class Play extends Phaser.State {
 
     create() {
       this.game.time.slowMotion = 1;
+
+      this.villages = this.add.group();
 
       this.hud = new HUD({
           game: this.game
@@ -17,12 +20,17 @@ export default class Play extends Phaser.State {
           this.game.time.slowMotion = 3;
       });
 
+      // constants
+      this.eventAreasAngles = [30, 60, 180, 360];
+      this.triggerEventTime = 0;
+      this.triggerEventInterval = 1;
+
       this.overlayBitmap = this.add.bitmapData(this.game.width, this.game.height);
-      this.overlayBitmap.ctx.fillStyle = '#000';
+      this.overlayBitmap.ctx.fillStyle = '#fff';
       this.overlayBitmap.ctx.fillRect(0, 0, this.game.width, this.game.height);
 
       this.overlay = this.add.sprite(0, 0, this.overlayBitmap);
-      this.overlay.visible = false;
+      this.overlay.visible = true;
       this.overlay.alpha = 0.75;
 
       this.music = this.game.add.audio('playMusic');
@@ -32,6 +40,24 @@ export default class Play extends Phaser.State {
     }
 
     update() {
+      this.triggerEventTime += this.game.time.physicsElapsed;
+
+      if (this.triggerEventTime > this.triggerEventInterval) {
+        this.triggerEventTime = 0;
+
+        let sets = {
+          game: this.game,
+          x: this.game.rnd.integerInRange(6, 76) * 10,
+          y: 0
+        };
+
+        this.addVillage(sets);
+      }
+    }
+
+    addVillage(sets) {
+      let village = new Village(sets);
+      this.villages.add(village);
     }
 
     hitEffect(obj, color) {
