@@ -35,9 +35,17 @@ export default class PowersBtn extends Phaser.Sprite {
         this.dragMusic.fadeIn(1000);
     }
     onDragStop(item) {
-        this.dragMusic.stop();
+      this.dragMusic.stop();
 
-        item.x = this.initialPos.x;
-        item.y = this.initialPos.y;
+      let villageToRescue = _.find(this.game.villages, (village) => {
+        return Phaser.Rectangle.intersects(this.getBounds(), village.getBounds());
+      });
+
+      if(!(_.isUndefined(villageToRescue) || _.isNull(villageToRescue))) {
+        villageToRescue.stopDisaster(item.name);
+      }
+
+      item.x = this.initialPos.x;
+      item.y = this.initialPos.y;
     }
 }

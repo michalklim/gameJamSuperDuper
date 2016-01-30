@@ -26,6 +26,8 @@ export default class Play extends Phaser.State {
       this.villages = this.add.group();
 
       var vlgs = this.buildVillages();
+      this.game.villages = vlgs;
+
       this.villages.addMultiple(vlgs);
       this.disasters = Disaster(vlgs);
 

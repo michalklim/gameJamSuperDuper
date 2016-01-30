@@ -19,11 +19,15 @@ export default class Village extends Phaser.Sprite {
   }
 
   startDisaster(disasterAndMiracle) {
-    this.isSafe = false;
-    this.disasterAndMiracle = disasterAndMiracle;
+      this.isSafe = false;
+      this.disasterAndMiracle = disasterAndMiracle;
   }
 
   stopDisaster(miracle) {
+    if(_.isUndefined(this.disasterAndMiracle)) return;
+
+    if(_.isNull(this.disasterAndMiracle)) return;
+
     if(miracle === this.disasterAndMiracle.miracle){
       this.isSafe = true;
     }
