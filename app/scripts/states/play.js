@@ -5,8 +5,13 @@ import HUD from '../prefabs/hud';
 export default class Play extends Phaser.State {
 
     create() {
+      this.game.physics.startSystem(Phaser.Physics.BOX2D);
+      this.game.physics.box2d.gravity.y = 500;
+      this.game.physics.box2d.restitution = 0.8;
+      this.game.physics.box2d.setBoundsToWorld();
 
-        this.farback = this.add.tileSprite(0, 0, 800, 2380, 'farback');
+        this.planet = this.add.sprite(this.world.centerX ,0 , 'planet');
+        this.planet.body.setCircle(this.planet.width / 2);
 
         this.game.time.slowMotion = 1;
 
@@ -109,8 +114,6 @@ export default class Play extends Phaser.State {
         this.game.physics.arcade.overlap(this.player, this.enemies, this.crashEnemy, null, this);
 
         this.enemies.forEach(enemy => this.game.physics.arcade.overlap(this.player, enemy.bullets, this.hitPlayer, null, this));
-
-        this.farback.tilePosition.y += 3;
     }
 
     createEnemy(data) {
