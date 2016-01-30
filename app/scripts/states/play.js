@@ -1,6 +1,7 @@
 import HUD from '../prefabs/hud';
 import Planet from '../prefabs/planet';
 import Village from '../prefabs/village';
+import PowersHud from '../prefabs/powersHud';
 
 export default class Play extends Phaser.State {
 
@@ -19,6 +20,12 @@ export default class Play extends Phaser.State {
       // add villages
       this.villages = this.add.group();
       this.villages.addMultiple(this.buildVillages());
+
+
+        this.powersHud = new PowersHud({
+            game: this.game
+        });
+        this.game.stage.addChild(this.powersHud);
 
 
       this.hud = new HUD({

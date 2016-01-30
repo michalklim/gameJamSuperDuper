@@ -3,6 +3,7 @@ export default class Preload extends Phaser.State {
     preload() {
       this.load.image('planet', 'images/test/kolo.png')
       this.load.image('village', 'images/sprites/village.png');
+      this.load.image('powersBtn', 'images/sprites/flames.png');
 
 
       this.load.audio('playMusic', ['audio/music/play.mp3']);
