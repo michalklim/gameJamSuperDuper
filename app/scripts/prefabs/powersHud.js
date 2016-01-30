@@ -1,9 +1,10 @@
 import PowersBtn from '../extensions/powersBtn';
 
 export default class PowersHud extends Phaser.Group {
-    constructor({game}) {
+    constructor({game, x}) {
         super(game);
         this.game = game;
+        this.x = x;
 
         this.score = 0;
         this.scoreLabel = 'Score: ';
@@ -13,31 +14,30 @@ export default class PowersHud extends Phaser.Group {
             align: 'center'
         });
         this.activate();
-        this.dragDropTestCircle = null;
     }
     activate() {
         this.addPowers();
     }
 
     addPowers() {
-        const POS_X_STEP = 68;
-        const POS_Y = 68;
+        const POS_X_STEP = 80;
+        const POS_Y = 128;
 
         const fire = new PowersBtn({
             game: this.game,
-            x: this.game.world.centerX - POS_X_STEP * 2,
+            x: -POS_X_STEP * 2.5,
             y: POS_Y,
-            asset: 'powersBtn',
+            asset: 'powerBtn-fire',
             powerSound: 'fireSound'
         });
 
-        this.add(fire);
+        this.addChild(fire);
 
         const water = new PowersBtn({
             game: this.game,
-            x: this.game.world.centerX - POS_X_STEP,
+            x: - POS_X_STEP,
             y: POS_Y,
-            asset: 'powersBtn',
+            asset: 'powerBtn-water',
             powerSound: 'waterSound'
         });
 
@@ -45,9 +45,9 @@ export default class PowersHud extends Phaser.Group {
 
         const lighting = new PowersBtn({
             game: this.game,
-            x: this.game.world.centerX,
+            x: POS_X_STEP,
             y: POS_Y,
-            asset: 'powersBtn',
+            asset: 'powerBtn-thunder',
             powerSound: 'thunderSound'
         });
 
@@ -55,22 +55,12 @@ export default class PowersHud extends Phaser.Group {
 
         const wind = new PowersBtn({
             game: this.game,
-            x: this.game.world.centerX + POS_X_STEP,
+            x: POS_X_STEP * 2.5,
             y: POS_Y,
-            asset: 'powersBtn',
+            asset: 'powerBtn-wind',
             powerSound: 'windSound'
         });
 
         this.add(wind);
-
-        const ground = new PowersBtn({
-            game: this.game,
-            x: this.game.world.centerX + POS_X_STEP * 2,
-            y: POS_Y,
-            asset: 'powersBtn',
-            powerSound: 'earthSound'
-        });
-
-        this.add(ground);
     }
 };

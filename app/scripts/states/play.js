@@ -9,6 +9,11 @@ export default class Play extends Phaser.State {
       // constants
       this.villageNumber = 10;
 
+      this.background = this.game.add.image(0, 0, 'bg');
+      this.background.anchor.setTo(0.5, 0.5);
+      this.background.scale.setTo(0.5);
+
+
       this.planet = new Planet({
         game: this.game,
         x: this.world.centerX,
@@ -25,7 +30,8 @@ export default class Play extends Phaser.State {
 
 
         this.powersHud = new PowersHud({
-            game: this.game
+            game: this.game,
+            x: this.world.centerX
         });
         this.game.stage.addChild(this.powersHud);
 
@@ -34,13 +40,6 @@ export default class Play extends Phaser.State {
           game: this.game
       });
 
-      this.game.input.onDown.add(() => {
-          this.game.time.slowMotion = 1;
-      });
-
-      this.game.input.onUp.add(() => {
-          this.game.time.slowMotion = 3;
-      });
 
       this.overlayBitmap = this.add.bitmapData(this.game.width, this.game.height);
       this.overlayBitmap.ctx.fillStyle = '#fff';

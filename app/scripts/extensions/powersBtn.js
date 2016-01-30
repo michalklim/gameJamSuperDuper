@@ -10,11 +10,9 @@ export default class PowersBtn extends Phaser.Sprite {
         this.powerSound = powerSound;
         this.game = game;
 
-        this.text = new Phaser.Text(this.game, 0, 0, this.label, this.style);
-        this.text.anchor.setTo(0.5);
+        this.scale.setTo(0.25);
         this.inputEnabled = true;
         this.input.enableDrag(true);
-        this.addChild(this.text);
         this.dragMusic = this.game.add.audio(this.powerSound);
 
         this.initialPos = {
@@ -24,13 +22,7 @@ export default class PowersBtn extends Phaser.Sprite {
 
         this.events.onDragStart.add(this.onDragStart, this);
         this.events.onDragStop.add(this.onDragStop, this);
-
-        this.activate();
     }
-    activate() {
-
-    }
-
     onDragStart() {
         this.dragMusic.fadeIn(1000);
     }
