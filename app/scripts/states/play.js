@@ -68,7 +68,7 @@ export default class Play extends Phaser.State {
         this.planet.rotation += 0.01;
 
         if(this.game.globalScore.failedDisasterLimitReached()){
-          this.disasters.stop();
+            this.disasters.stop();
             this.gameOver();
         }
     }
@@ -95,16 +95,18 @@ export default class Play extends Phaser.State {
     }
 
     gameOver(){
-        this.game.time.slowMotion = 3;
-        this.overlay.visible = true;
-        this.game.world.bringToTop(this.overlay);
-        let timer = this.game.time.create(this.game, true);
-        timer.add(3000, () => {
+        //this.game.time.slowMotion = 3;
+        //this.overlay.visible = true;
+        //this.game.world.bringToTop(this.overlay);
+        //let timer = this.game.time.create(this.game, true);
+/*        /timer.add(3000, () => {
             this.music.stop();
             this.gameOverSound.play();
             this.game.state.start('Over');
         });
-        timer.start();
+        timer.start();*/
+      this.game.state.start('Over');
+      console.log("GAME OVER!");
     }
 
     render(){
