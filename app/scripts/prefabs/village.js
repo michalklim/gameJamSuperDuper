@@ -1,7 +1,6 @@
 export default class Village extends Phaser.Sprite {
 
   constructor({ game, x, y}) {
-    console.log('created village');
     var asset = 'village';
 
     super(game, x, y, asset, 1);
@@ -17,9 +16,5 @@ export default class Village extends Phaser.Sprite {
 
     this.natives = this.game.add.group();
     this.natives.enableBody = true;
-  }
-
-  render() {
-    this.game.debug.spriteInfo(this, 32, 32);
   }
 }
