@@ -1,11 +1,12 @@
 import HUD from '../prefabs/hud';
 import Planet from '../prefabs/planet';
 import Village from '../prefabs/village';
-import PowersHud from '../prefabs/powersHud';
 
 export default class Play extends Phaser.State {
 
     create() {
+      // constants
+      this.villageNumber = 10;
 
       this.planet = new Planet({
         game: this.game,
@@ -15,12 +16,9 @@ export default class Play extends Phaser.State {
       });
       this.game.stage.addChild(this.planet);
 
+      // add villages
       this.villages = this.add.group();
-
-        this.powersHud = new PowersHud({
-            game: this.game
-        });
-        this.game.stage.addChild(this.powersHud);
+      this.villages.addMultiple(this.buildVillages());
 
 
       this.hud = new HUD({
@@ -35,11 +33,6 @@ export default class Play extends Phaser.State {
           this.game.time.slowMotion = 3;
       });
 
-      // constants
-      this.eventAreasAngles = [30, 60, 180, 360];
-      this.triggerEventTime = 0;
-      this.triggerEventInterval = 1;
-
       this.overlayBitmap = this.add.bitmapData(this.game.width, this.game.height);
       this.overlayBitmap.ctx.fillStyle = '#fff';
       this.overlayBitmap.ctx.fillRect(0, 0, this.game.width, this.game.height);
@@ -51,69 +44,33 @@ export default class Play extends Phaser.State {
       this.music = this.game.add.audio('playMusic');
       this.gameOverSound = this.add.sound('gameOver');
 
-      //this.music.loopFull();
+      this.music.loopFull();
     }
 
     update() {
-      this.triggerEventTime += this.game.time.physicsElapsed;
+    }
 
-      if (this.triggerEventTime > this.triggerEventInterval) {
-        this.triggerEventTime = 0;
+    buildVillages() {
+      let planetCircle = this.planet.getCenterCircle();
+
+      let angleScope = 360/this.villageNumber;
+      return _.map(_.range(this.villageNumber), (number) => {
+
+        let angle = _.random(number * angleScope, (number + 1) * angleScope) * (Math.PI / 180);
+        let x = planetCircle.x + Math.cos(angle)*planetCircle.r;
+        let y = planetCircle.y + Math.sin(angle)*planetCircle.r;
+
+        console.log("planetCircle.y:" + planetCircle.y + " ; angle:" + angle + " ; r:"+ planetCircle.r +  " ; x:"+x, " ; y:"+y);
 
         let sets = {
           game: this.game,
-          x: this.game.rnd.integerInRange(6, 76) * 10,
-          y: 0
+          x: x,
+          y: y,
+          planetCircle: planetCircle
         };
 
-        this.addVillage(sets);
-      }
-    }
-
-    addVillage(sets) {
-      let village = new Village(sets);
-      this.villages.add(village);
-    }
-
-    hitEffect(obj, color) {
-        let tween = this.game.add.tween(obj);
-        let emitter = this.game.add.emitter();
-        let emitterPhysicsTime = 0;
-        let particleSpeed = 100;
-        let maxParticles = 10;
-
-        tween.to({tint: 0xff0000}, 100);
-        tween.onComplete.add(() => {
-            obj.tint = 0xffffff;
-        });
-        tween.start();
-
-        emitter.x = obj.x;
-        emitter.y = obj.y;
-        emitter.gravity = 0;
-        emitter.makeParticles('particle');
-
-        if (obj.health <= 0) {
-            particleSpeed = 200;
-            maxParticles = 40;
-            color = 0xff0000;
-        }
-
-        emitter.minParticleSpeed.setTo(-particleSpeed, -particleSpeed);
-        emitter.maxParticleSpeed.setTo(particleSpeed, particleSpeed);
-        emitter.start(true, 500, null, maxParticles);
-        emitter.update = () => {
-            emitterPhysicsTime += this.game.time.physicsElapsed;
-            if(emitterPhysicsTime >= 0.6){
-                emitterPhysicsTime = 0;
-                emitter.destroy();
-            }
-
-        };
-        emitter.forEach(particle => particle.tint = color);
-        if (!this.player.alive) {
-            this.game.world.bringToTop(this.overlay);
-        }
+        return new Village(sets);
+      });
     }
 
     gameOver(){
