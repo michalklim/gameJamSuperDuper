@@ -7,7 +7,7 @@ export default class Play extends Phaser.State {
 
     create() {
       // constants
-      this.villageNumber = 10;
+      this.villageNumber = 8;
 
       this.planet = new Planet({
         game: this.game,
@@ -15,19 +15,16 @@ export default class Play extends Phaser.State {
         y: this.world.centerY + window.innerHeight * 1.5,
         asset: 'planet'
       });
-      this.game.stage.addChild(this.planet);
 
       // add villages
       this.villages = this.add.group();
+      this.planet.addChild(this.villages);
       this.villages.addMultiple(this.buildVillages());
-
-        this.planet.addChild(this.villages);
-
-
-        this.powersHud = new PowersHud({
-            game: this.game
-        });
-        this.game.stage.addChild(this.powersHud);
+      this.powersHud = new PowersHud({
+        game: this.game
+      });
+      this.game.stage.addChild(this.powersHud);
+      this.game.stage.addChild(this.planet);
 
 
       this.hud = new HUD({
@@ -60,7 +57,6 @@ export default class Play extends Phaser.State {
 
     buildVillages() {
       let planetCircle = this.planet.getCenterCircle();
-      console.log("planetCircle.x:" + planetCircle.x + " ; planetCircle.y:" + planetCircle.y);
 
       let angleScope = 360/this.villageNumber;
       return _.map(_.range(this.villageNumber), (number) => {
@@ -68,7 +64,6 @@ export default class Play extends Phaser.State {
         let angle = _.random(number * angleScope, (number + 1) * angleScope) * (Math.PI / 180);
         let x = planetCircle.x + Math.cos(angle)*planetCircle.r;
         let y = planetCircle.y + Math.sin(angle)*planetCircle.r;
-
 
         let sets = {
           game: this.game,

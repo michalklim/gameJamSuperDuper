@@ -12,7 +12,7 @@ export default class Planet extends Phaser.Sprite {
   }
 
   getCenterCircle() {
-    return new Circle(this.body.x, this.body.y, this.width/2);
+    return new Circle(0, 0, this.x);
   }
 }
 
