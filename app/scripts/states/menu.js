@@ -6,7 +6,7 @@ export default class Menu extends Phaser.State {
 
         this.music = this.game.add.audio('menuMusic');
 
-        this.title = new Phaser.Text(this.game, this.game.world.centerX, this.game.world.centerY-200, 'Shoot\'Em Up', {
+        this.title = new Phaser.Text(this.game, this.game.world.centerX, this.game.world.centerY-200, 'Axis Mundi Ultimate', {
             font: '36px Tahoma',
             fill: 'white',
             align: 'center'
@@ -41,7 +41,6 @@ export default class Menu extends Phaser.State {
         this.start.onInputUp.add(()=>{
             this.music.stop();
             this.state.start('Play');
-
         });
 
         this.menuPanel = this.add.group();

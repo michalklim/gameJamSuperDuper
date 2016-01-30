@@ -21,15 +21,4 @@ export default class Hud extends Phaser.Group {
         this.add(this.healthbar);
         this.add(this.scoreText);
     }
-
-    updateHealth() {
-        this.healthbar.crop(new Phaser.Rectangle(0, 0, (this.player.health / this.player.maxHealth) * this.width, 10));
-        this.healthbar.updateCrop();
-    }
-
-    updateScore(amount) {
-        this.score += amount;
-        this.scoreText.text = this.scoreLabel + (this.score * 10);
-    }
-
 };
