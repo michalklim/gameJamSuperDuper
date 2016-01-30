@@ -1,11 +1,34 @@
-function Disaster(villages) {
+
+
+function CreateDisasterMiracle(ADisaster, AMiracle){
+  return {
+    disaster : ADisaster,
+    miracle : AMiracle,
+  }
+}
+
+var DisastersAndMiracles = [
+  CreateDisasterMiracle("fire", "water"),
+  CreateDisasterMiracle("locust","fire"),
+  CreateDisasterMiracle("clouds","wind"),
+  CreateDisasterMiracle("monster","thunderbolt")];
+
+
+export default function Disaster(villages) {
 
   var _villages = villages;
 
-  var _disasters = ["locust"];
+  var _disasters = DisastersAndMiracles;
 
   var getRandomRitualTimeout = function(){
+
+    return Math.floor((Math.random() * 10) + 4) * 1000;
+
     return 3000; //wylosowane przez rzut koscia, gwarantowana losowosc
+  };
+
+  var pickDisasterAndMiracle = function(){
+    return _disasters[Math.floor((Math.random() * _disasters.length))]
   };
 
   var pickVillageId = function() {
@@ -20,8 +43,15 @@ function Disaster(villages) {
   var currentVillageWithRitual = null;
 
   var ritualInProgress = false;
+  var stop = false;
 
   return {
+
+    stop : function(){
+      stop = true;
+    },
+
+
     getVillages : function () {
       return _villages;
     },
@@ -30,6 +60,9 @@ function Disaster(villages) {
     },
     run : function run() {
 
+      if(stop){
+        return;
+      }
       if(ritualInProgress){
         console.log("no new village");
         return; }
@@ -39,9 +72,7 @@ function Disaster(villages) {
       currentVillageWithRitual = village;
       ritualInProgress = true;
 
-      var ritual = {};
-
-      village.startRitual(ritual);
+      village.startDisaster(pickDisasterAndMiracle());
 
       setTimeout(function(){
         village.destroy();
@@ -54,20 +85,22 @@ function Disaster(villages) {
   }
 }
 
+
 var v1 = {
-  startRitual : function(){
-    console.log("start");
+  startDisaster : function(disasterAndMiracle){
+    console.log("start " + disasterAndMiracle.disaster + " with " + disasterAndMiracle.miracle);
   },
   destroy : function(){
     console.log("destroy ");
 
   },
-  stopRitual : function(){
-    console.log("stop ritual");
+  stopDisaster : function(miracle){
+    console.log("stop ritual " + miracle);
   }
 };
 
 //var d = Disaster([v1]);
 
-//console.log(d.run());
+//d.run();
+
 
