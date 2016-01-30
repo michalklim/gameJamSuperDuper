@@ -2,12 +2,17 @@ import HUD from '../prefabs/hud';
 import Planet from '../prefabs/planet';
 import Village from '../prefabs/village';
 import PowersHud from '../prefabs/powersHud';
+import GlobalScore from '../prefabs/globalScore';
+import VulkanHud from '../prefabs/vulkanHud';
 
 export default class Play extends Phaser.State {
 
     create() {
       // constants
       this.villageNumber = 10;
+
+        this.globalScore = new GlobalScore();
+        //this.vulkanHud = new VulkanHud(this.game,this.globalScore);
 
       this.planet = new Planet({
         game: this.game,
@@ -21,14 +26,16 @@ export default class Play extends Phaser.State {
       this.villages = this.add.group();
       this.villages.addMultiple(this.buildVillages());
 
+<<<<<<< HEAD
         this.planet.addChild(this.villages);
 
 
+=======
+>>>>>>> vulkanHud + globalScore initial implementation.
         this.powersHud = new PowersHud({
             game: this.game
         });
         this.game.stage.addChild(this.powersHud);
-
 
       this.hud = new HUD({
           game: this.game
@@ -55,7 +62,15 @@ export default class Play extends Phaser.State {
     }
 
     update() {
+<<<<<<< HEAD
         this.planet.rotation += 0.01;
+=======
+
+        if(this.globalScore.failedDisasterLimitReached()){
+            this.gameOver();
+        }
+
+>>>>>>> vulkanHud + globalScore initial implementation.
     }
 
     buildVillages() {
@@ -97,6 +112,5 @@ export default class Play extends Phaser.State {
     render(){
       //this.game.debug.spriteInfo(this.overlay, 32, 32);
       this.game.debug.cameraInfo(this.game.camera,32,32);
-      //console.log("ala ma kota");
     }
 }
