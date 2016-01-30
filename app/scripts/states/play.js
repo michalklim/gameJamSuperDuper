@@ -51,7 +51,7 @@ export default class Play extends Phaser.State {
       this.music = this.game.add.audio('playMusic');
       this.gameOverSound = this.add.sound('gameOver');
 
-      this.music.loopFull();
+      //this.music.loopFull();
     }
 
     update() {

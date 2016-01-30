@@ -5,8 +5,13 @@ export default class Preload extends Phaser.State {
       this.load.image('village', 'images/sprites/village.png');
       this.load.image('powersBtn', 'images/sprites/flames.png');
 
+        this.load.audio('fireSound', ['audio/sound/fire.mp3']);
+        this.load.audio('waterSound', ['audio/sound/woda.mp3']);
+        this.load.audio('thunderSound', ['audio/sound/piorun.mp3']);
+        this.load.audio('earthSound', ['audio/sound/ziemia.mp3']);
+        this.load.audio('windSound', ['audio/sound/wiatr.mp3']);
 
-      this.load.audio('playMusic', ['audio/music/play.mp3']);
+        this.load.audio('playMusic', ['audio/music/play.mp3']);
       this.load.audio('menuMusic', ['audio/music/menu.mp3']);
 
       this.load.audio('menuOver', ['audio/sound/menu-over.mp3']);

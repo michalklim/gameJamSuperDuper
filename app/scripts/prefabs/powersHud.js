@@ -18,9 +18,50 @@ export default class PowersHud extends Phaser.Group {
             game: this.game,
             x: this.game.world.centerX,
             y: this.game.world.centerY,
-            asset: 'powersBtn'
+            asset: 'powersBtn',
+            powerSound: 'fireSound'
         });
 
         this.add(this.fire);
+
+        this.water = new PowersBtn({
+            game: this.game,
+            x: this.game.world.centerX,
+            y: this.game.world.centerY,
+            asset: 'powersBtn',
+            powerSound: 'waterSound'
+        });
+
+        this.add(this.water);
+
+        this.lighting = new PowersBtn({
+            game: this.game,
+            x: this.game.world.centerX,
+            y: this.game.world.centerY,
+            asset: 'powersBtn',
+            powerSound: 'thunderSound'
+        });
+
+        this.add(this.lighting);
+
+        this.wind = new PowersBtn({
+            game: this.game,
+            x: this.game.world.centerX,
+            y: this.game.world.centerY,
+            asset: 'powersBtn',
+            powerSound: 'windSound'
+        });
+
+        this.add(this.wind);
+
+        this.ground = new PowersBtn({
+            game: this.game,
+            x: this.game.world.centerX,
+            y: this.game.world.centerY,
+            asset: 'powersBtn',
+            powerSound: 'earthSound'
+        });
+
+        this.add(this.ground);
     }
 };
