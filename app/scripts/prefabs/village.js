@@ -16,13 +16,17 @@ export default class Village extends Phaser.Sprite {
     this.natives.enableBody = true;
 
     this.isSafe = false;
+
+    this.animations.add('fire', 10, true);
+    this.animations.add('locust', 10, true);
+    this.animations.add('clouds', 10, true);
+    this.animations.add('monster', 10, true);
   }
 
   startDisaster(disasterAndMiracle) {
     this.isSafe = false;
     this.disasterAndMiracle = disasterAndMiracle;
-
-    this.rotation+=45;
+    this.animations.play(disasterAndMiracle.mirracle);
   }
 
   stopDisaster(miracle) {
@@ -33,6 +37,7 @@ export default class Village extends Phaser.Sprite {
 
     if(miracle === this.disasterAndMiracle.miracle){
       this.isSafe = true;
+      this.animations.stop();
     }
   }
 

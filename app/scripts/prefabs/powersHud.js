@@ -35,7 +35,7 @@ export default class PowersHud extends Phaser.Group {
             game: this.game,
             x: -POS_X_STEP * 2.5,
             y: POS_Y,
-            asset: 'powersBtn',
+            asset: 'powerBtn-fire',
             powerSound: 'fireSound',
             name: 'fire'
         });
@@ -46,7 +46,7 @@ export default class PowersHud extends Phaser.Group {
             game: this.game,
             x: - POS_X_STEP,
             y: POS_Y,
-            asset: 'powersBtn',
+            asset: 'powerBtn-water',
             powerSound: 'waterSound',
             name: "water"
         });
@@ -57,7 +57,7 @@ export default class PowersHud extends Phaser.Group {
             game: this.game,
             x: POS_X_STEP,
             y: POS_Y,
-            asset: 'powersBtn',
+            asset: 'powerBtn-thunder',
             powerSound: 'thunderSound',
             name: "thunderbolt"
         });
@@ -68,7 +68,7 @@ export default class PowersHud extends Phaser.Group {
             game: this.game,
             x: POS_X_STEP * 2.5,
             y: POS_Y,
-            asset: 'powersBtn',
+            asset: 'powerBtn-wind',
             powerSound: 'windSound',
             name: 'wind'
         });

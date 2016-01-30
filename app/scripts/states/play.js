@@ -10,7 +10,6 @@ export default class Play extends Phaser.State {
     create() {
       // constants
       this.villageNumber = 8;
-      this.game.time.slowMotion = 2;
 
       this.game.globalScore = new GlobalScore();
 
