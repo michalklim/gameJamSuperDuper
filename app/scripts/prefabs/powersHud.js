@@ -9,14 +9,6 @@ export default class PowersHud extends Phaser.Group {
         this.activate();
 
         this.dragDropTestCircle = null;
-
-        this.scoreText = new Phaser.Text(this.game, this.game.world.width-250, 14, "Score: 0", {
-            font: '35px Verdana',
-            fill: 'white',
-            align: 'center'
-        });
-
-        this.add(this.scoreText);
     }
 
     updateScore(score){
@@ -25,6 +17,16 @@ export default class PowersHud extends Phaser.Group {
 
     activate() {
         this.addPowers();
+        this.addScoreText();
+    }
+
+    addScoreText() {
+        this.scoreText = new Phaser.Text(this.game, this.game.world.width-250, 14, "Score: 0", {
+            font: '35px Verdana',
+            fill: 'white',
+            align: 'center'
+        });
+        this.add(this.scoreText);
     }
 
     addPowers() {
