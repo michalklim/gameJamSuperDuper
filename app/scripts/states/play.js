@@ -4,6 +4,7 @@ import Village from '../prefabs/village';
 import PowersHud from '../prefabs/powersHud';
 import GlobalScore from '../prefabs/globalScore';
 import VulkanHud from '../prefabs/vulkanHud';
+import Disaster from '../prefabs/disaster'
 
 export default class Play extends Phaser.State {
 
@@ -11,7 +12,8 @@ export default class Play extends Phaser.State {
       // constants
       this.villageNumber = 10;
 
-        this.game.globalScore = new GlobalScore();
+      this.game.globalScore = new GlobalScore();
+
         //this.vulkanHud = new VulkanHud(this.game,this.globalScore);
 
       this.planet = new Planet({
@@ -24,7 +26,12 @@ export default class Play extends Phaser.State {
 
       // add villages
       this.villages = this.add.group();
-      this.villages.addMultiple(this.buildVillages());
+
+      var vlgs = this.buildVillages();
+
+      this.villages.addMultiple(vlgs);
+
+      this.disasters = Disaster(vlgs);
 
         this.planet.addChild(this.villages);
 
@@ -55,12 +62,15 @@ export default class Play extends Phaser.State {
 
       this.music = this.game.add.audio('playMusic');
       this.gameOverSound = this.add.sound('gameOver');
+
+      this.disasters.run();
     }
 
     update() {
         this.planet.rotation += 0.01;
 
         if(this.game.globalScore.failedDisasterLimitReached()){
+          this.disasters.stop();
             this.gameOver();
         }
     }
