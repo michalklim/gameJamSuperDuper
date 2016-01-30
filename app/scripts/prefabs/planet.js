@@ -9,6 +9,14 @@ export default class Planet extends Phaser.Sprite {
     this.body.setCircle(this.width / 2);
     this.body.static = true;
   }
+
+  getCenterCircle() {
+    return {
+      x: this.body.x,
+      y: this.body.y,
+      r: this.width/2
+    };
+  }
 }
 
 

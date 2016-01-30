@@ -5,6 +5,8 @@ import Village from '../prefabs/village';
 export default class Play extends Phaser.State {
 
     create() {
+      // constants
+      this.eventAreasAngles = [330, 60, 180, 360];
 
       this.planet = new Planet({
         game: this.game,
@@ -14,7 +16,29 @@ export default class Play extends Phaser.State {
       });
       this.game.stage.addChild(this.planet);
 
+      // add villages
       this.villages = this.add.group();
+      let planetCircle = this.planet.getCenterCircle();
+
+
+      console.log("planetCircle.x: " + planetCircle.x);
+      console.log("planetCircle.y: " + planetCircle.y);
+
+      _.forEach(_.range(10), () => {
+
+        let angle = _.random(245, this.eventAreasAngles[0]) * (Math.PI / 180);
+        let x = planetCircle.x + Math.cos(angle)*planetCircle.r;
+        let y = planetCircle.y + Math.sin(angle)*planetCircle.r;
+
+        console.log("planetCircle.y:" + planetCircle.y + " ; angle:" + angle + " ; r:"+ planetCircle.r +  " ; x:"+x, " ; y:"+y);
+
+        let sets = {
+          game: this.game,
+          x: x,
+          y: y
+        };
+        this.addVillage(sets);
+      });
 
       this.hud = new HUD({
           game: this.game
@@ -27,11 +51,6 @@ export default class Play extends Phaser.State {
       this.game.input.onUp.add(() => {
           this.game.time.slowMotion = 3;
       });
-
-      // constants
-      this.eventAreasAngles = [30, 60, 180, 360];
-      this.triggerEventTime = 0;
-      this.triggerEventInterval = 1;
 
       this.overlayBitmap = this.add.bitmapData(this.game.width, this.game.height);
       this.overlayBitmap.ctx.fillStyle = '#fff';
@@ -48,24 +67,13 @@ export default class Play extends Phaser.State {
     }
 
     update() {
-      this.triggerEventTime += this.game.time.physicsElapsed;
-
-      if (this.triggerEventTime > this.triggerEventInterval) {
-        this.triggerEventTime = 0;
-
-        let sets = {
-          game: this.game,
-          x: this.game.rnd.integerInRange(6, 76) * 10,
-          y: 0
-        };
-
-        this.addVillage(sets);
-      }
     }
 
     addVillage(sets) {
       let village = new Village(sets);
       this.villages.add(village);
+
+      this.game.debug.spriteInfo(village, 32, 64);
     }
 
     hitEffect(obj, color) {
