@@ -6,20 +6,27 @@ export default class Planet extends Phaser.Sprite {
 
     this.game = game;
     this.targetDim = window.innerWidth;
-
-    this.leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
-    this.rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
-
+    this.activate();
+  }
+  activate() {
     this.smoothed = false;
     this.scale.setTo(this.targetDim / this.texture.width);
     this.anchor.setTo(0.5);
     this.game.physics.arcade.enable(this);
+    this.leftKey = this.game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+    this.rightKey = this.game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+
+    this.game.input.mouse.mouseWheelCallback = (e) => {
+      var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+      this.rotation += delta * 0.2;
+    };
   }
 
   update() {
     if (this.leftKey.isDown)
     {
       this.rotation -= 0.02;
+      console.log(this);
     }
     else if (this.rightKey.isDown)
     {
@@ -31,4 +38,3 @@ export default class Planet extends Phaser.Sprite {
     return new Circle(0, 0, this.x);
   }
 }
-
