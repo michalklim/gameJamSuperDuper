@@ -96,6 +96,7 @@ export default class Play extends Phaser.State {
         this.planet.destroy(true);
         this.powersHud.destroy(true);
         this.vulcan.destroy(true);
+        this.music.destroy(true);
 
       this.game.state.start('Over');
 
