@@ -7,6 +7,8 @@ import Disaster from '../prefabs/disaster'
 export default class Play extends Phaser.State {
 
     create() {
+
+      this.game.sound.destroy();
       // constants
       this.villageNumber = 8;
       this.game.globalScore = new GlobalScore();
@@ -89,6 +91,7 @@ export default class Play extends Phaser.State {
 
         if(this.game.globalScore.failedDisasterLimitReached()){
             this.disasters.stop();
+
             this.gameOver();
         }
 
@@ -133,16 +136,13 @@ export default class Play extends Phaser.State {
     }
 
     gameOver(){
-
-        this.villages.removeAll();
-        this.planet.destroy(true);
-        this.innerClouds.destroy(true);
-        this.outerClouds.destroy(true);
-        this.powersHud.destroy(true);
-        this.vulcan.destroy(true);
-        this.music.destroy(true);
-
+      this.villages.removeAll();
+      this.planet.destroy(true);
+      this.innerClouds.destroy(true);
+      this.outerClouds.destroy(true);
+      this.powersHud.destroy(true);
+      this.vulcan.destroy(true);
+      this.music.destroy(true);
       this.game.state.start('Over');
-
     }
 }

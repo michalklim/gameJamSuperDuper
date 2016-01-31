@@ -3,7 +3,7 @@ import TextButton from '../extensions/textbutton';
 export default class Over extends Phaser.State {
 
     create() {
-
+      this.music = this.game.sound.play('game-over');
       this.background = this.game.add.image(0, 0, 'gameOver-bg');
       this.background.scale.setTo(this.game.width / this.background.texture.width);
 

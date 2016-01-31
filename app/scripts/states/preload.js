@@ -36,12 +36,17 @@ export default class Preload extends Phaser.State {
       this.load.audio('playMusic', ['audio/music/play.mp3']);
       this.game.add.audio('playMusic');
 
+      //Game sounds
+      this.load.audio('successSound', ['audio/sound/udalosie.mp3']);
+      this.game.add.audio('successSound');
+
+      this.load.audio('game-over', ['audio/sound/gejover.mp3']);
+      this.game.add.audio('game-over');
+
       this.load.audio('menuMusic', ['audio/music/menu.mp3']);
       this.game.add.audio('menuMusic');
 
       this.load.audio('menuDown', ['audio/sound/menu-click.mp3']);
-
-      this.load.audio('gameOver', ['audio/sound/game-over.mp3']);
 
       var disasterFrameHeight = 400;
       var disasterFrameWidth = 400;
@@ -70,7 +75,9 @@ export default class Preload extends Phaser.State {
         'waterSound',
         'thunderSound',
         'windSound',
-        'menuDown'
+        'menuDown',
+        'successSound',
+        'game-over'
       ], this.showMenu, this);
     }
     showMenu() {
