@@ -25,9 +25,28 @@ export default class Play extends Phaser.State {
         game: this.game,
         x: this.world.centerX,
         y: this.world.height * 1.5,
-        asset: 'planet'
+        asset: 'planet',
+          targetDim : window.innerWidth
       });
       this.game.stage.addChild(this.planet);
+
+        this.innerClouds = new Planet({
+            game: this.game,
+            x: this.world.centerX,
+            y: this.world.height * 1.5,
+            asset: 'inner_clouds',
+            targetDim : window.innerWidth*1.2
+        });
+        this.game.stage.addChild(this.innerClouds);
+
+        this.outerClouds = new Planet({
+            game: this.game,
+            x: this.world.centerX,
+            y: this.world.height * 1.5,
+            asset: 'outer_clouds',
+            targetDim : window.innerWidth*1.2
+        });
+        this.game.stage.addChild(this.outerClouds);
 
       // add villages
       this.villages = this.add.group();
@@ -77,6 +96,9 @@ export default class Play extends Phaser.State {
             this.vulcan.frame = this.game.globalScore.failedDisastersCount;
         }
 
+		this.innerClouds.rotate(0.001);
+        this.outerClouds.rotate(0.0004);
+
         if (this.leftKey.isDown || this.AKey.isDown)
         {
             this.planet.rotate(-0.04);
@@ -114,6 +136,8 @@ export default class Play extends Phaser.State {
 
         this.villages.removeAll();
         this.planet.destroy(true);
+        this.innerClouds.destroy(true);
+        this.outerClouds.destroy(true);
         this.powersHud.destroy(true);
         this.vulcan.destroy(true);
         this.music.destroy(true);

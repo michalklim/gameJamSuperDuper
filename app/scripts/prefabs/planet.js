@@ -1,11 +1,11 @@
 import Circle from '../models/circleModel'
 
 export default class Planet extends Phaser.Sprite {
-  constructor({ game, x, y, asset}) {
+  constructor({ game, x, y, asset, targetDim}) {
     super(game, x, y, asset);
 
     this.game = game;
-    this.targetDim = window.innerWidth;
+    this.targetDim = targetDim;
     this.activate();
   }
   activate() {
