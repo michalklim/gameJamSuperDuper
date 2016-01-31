@@ -1,6 +1,8 @@
 export default class Preload extends Phaser.State {
 
     preload() {
+
+
       this.load.image('planet', 'images/sprites/UI/planeta.png');
 
       this.load.image('inner_clouds', 'images/sprites/UI/chmury_blizej.png');
@@ -50,9 +52,16 @@ export default class Preload extends Phaser.State {
       this.load.spritesheet('nativesRitual', 'images/sprites/animations/ritual.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
 
       this.game.load.bitmapFont('desyrel', 'images/sprites/UI/font.png', 'images/sprites/UI/font.xml');
+
+
     }
 
     create() {
+
+      this.loadingText = this.game.add.bitmapText(this.game.world.centerX, this.game.world.centerY,  'desyrel', 'Loading...',72);
+      //this.loadingText.scale.setTo(0.2);
+      this.loadingText.position.x -= this.loadingText.width /2;
+
       this.game.sound.setDecodedCallback([
         'playMusic',
         'menuMusic',
