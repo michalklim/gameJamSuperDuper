@@ -40,6 +40,8 @@ export default class Preload extends Phaser.State {
       this.load.spritesheet('monster', 'images/sprites/animations/ufo_shit.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
       this.load.spritesheet('clouds', 'images/sprites/animations/rain.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
       this.load.spritesheet('locust', 'images/sprites/animations/szarancza.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
+      this.load.spritesheet('nativesIdle', 'images/sprites/animations/idle.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
+      this.load.spritesheet('nativesRitual', 'images/sprites/animations/ritual.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
     }
 
     create() {
