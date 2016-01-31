@@ -24,7 +24,7 @@ export default class Preload extends Phaser.State {
       this.load.image('tryAgain', 'images/sprites/UI/skip kopia.png');
       this.load.image('gameOver-bg', 'images/sprites/UI/gameover.jpg');
 
-      this.load.spritesheet('vulcan', 'images/sprites/vulkan2.png', 203, 276);
+      this.load.spritesheet('vulcan', 'images/sprites/disaster_meter.png', 135, 388);
 
       //Audio
       this.load.audio('fireSound', ['audio/sound/fire.mp3']);
