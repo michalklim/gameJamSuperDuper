@@ -70,7 +70,7 @@ export default class Village extends Phaser.Sprite {
 
     if(miracle === this.disasterAndMiracle.miracle){
       console.log("happy miracle: " + miracle);
-
+      this.game.globalScore.incrementMiracles();
       this.stopAnimation(this.disasterAnimations[this.disasterAndMiracle.disaster]);
       this.isSafe = true;
     }
@@ -78,7 +78,6 @@ export default class Village extends Phaser.Sprite {
 
   destroy() {
      if(this.isSafe) {
-       this.game.globalScore.incrementMiracles();
        console.log("Village is safe");
      } else {
        console.log("Village has bad luck");
