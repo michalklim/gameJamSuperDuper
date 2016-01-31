@@ -12,7 +12,7 @@ export default class PowersHud extends Phaser.Group {
     }
 
     updateScore(score){
-        this.scoreText.setText("Score: "+score);
+        this.scoreText.text="Score: "+score;
     }
 
     activate() {
@@ -21,12 +21,7 @@ export default class PowersHud extends Phaser.Group {
     }
 
     addScoreText() {
-        this.scoreText = new Phaser.Text(this.game, -950, 5, "Score: 0", {
-            font: '35px Verdana',
-            fill: 'white',
-            align: 'center'
-        });
-        this.add(this.scoreText);
+        this.scoreText = this.game.add.bitmapText(0, 0, 'desyrel', 'Score: 0',72);
     }
 
     addPowers() {

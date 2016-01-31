@@ -44,6 +44,8 @@ export default class Preload extends Phaser.State {
       this.load.spritesheet('locust', 'images/sprites/animations/szarancza.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
       this.load.spritesheet('nativesIdle', 'images/sprites/animations/idle.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
       this.load.spritesheet('nativesRitual', 'images/sprites/animations/ritual.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
+
+      this.game.load.bitmapFont('desyrel', 'images/sprites/UI/font.png', 'images/sprites/UI/font.xml');
     }
 
     create() {
