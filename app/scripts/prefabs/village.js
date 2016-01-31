@@ -10,6 +10,10 @@ export default class Village extends Phaser.Sprite {
 
     var animationOffset = -150;
 
+    this.game.physics.arcade.enable(this);
+    this.rotation = game.physics.arcade.angleToXY(this, planetCircle.x, planetCircle.y) - 90 * (Math.PI / 180);
+
+
     var fireDisasterSprite = this.game.add.sprite(animationOffset, -200, 'fire');
     this.addAnimation(fireDisasterSprite, 'fire');
 
@@ -22,10 +26,10 @@ export default class Village extends Phaser.Sprite {
     var monsterDisasterSprite = this.game.add.sprite(animationOffset, -200, 'monster');
     this.addAnimation(monsterDisasterSprite, 'monster');
 
-    this.nativesRitualSprite = this.game.add.sprite(animationOffset, -200, 'nativesRitual');
+    this.nativesRitualSprite = this.game.add.sprite(animationOffset - 30, -180, 'nativesRitual');
     this.addAnimation(this.nativesRitualSprite, 'nativesRitual');
 
-    this.nativesIdleSprite = this.game.add.sprite(animationOffset, -200, 'nativesIdle');
+    this.nativesIdleSprite = this.game.add.sprite(animationOffset - 30, -180, 'nativesIdle');
     this.addAnimation(this.nativesIdleSprite, 'nativesIdle');
 
     this.stopAnimation(fireDisasterSprite);
@@ -39,9 +43,6 @@ export default class Village extends Phaser.Sprite {
       clouds: cloudsDisasterSprite,
       monster: monsterDisasterSprite
     };
-
-    this.game.physics.arcade.enable(this);
-    this.rotation = game.physics.arcade.angleToXY(this, planetCircle.x, planetCircle.y) - 90 * (Math.PI / 180);
 
     this.natives = this.game.add.group();
     this.natives.enableBody = true;

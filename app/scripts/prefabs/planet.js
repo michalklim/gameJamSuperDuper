@@ -7,6 +7,7 @@ export default class Planet extends Phaser.Sprite {
     this.game = game;
     this.targetDim = window.innerWidth;
     this.activate();
+    this.basicX = this.x;
   }
   activate() {
     this.smoothed = false;
@@ -22,6 +23,6 @@ export default class Planet extends Phaser.Sprite {
   
 
   getCenterCircle() {
-    return new Circle(0, 0, this.x);
+    return new Circle(0, 0, this.basicX * 1.48);
   }
 }
