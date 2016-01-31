@@ -8,16 +8,17 @@ export default class Village extends Phaser.Sprite {
     this.anchor.setTo(0.5);
     this.scale.setTo(0.8);
 
-    var fireDisasterSprite = this.game.add.sprite(0, -200, 'fire');
+    var animationOffset = -150;
+    var fireDisasterSprite = this.game.add.sprite(animationOffset, -400, 'fire');
     this.addAnimation(fireDisasterSprite, 'fire');
 
-    var locustDisasterSprite = this.game.add.sprite(0, -200, 'locust');
+    var locustDisasterSprite = this.game.add.sprite(animationOffset, -200, 'locust');
     this.addAnimation(locustDisasterSprite, 'locust');
 
-    var cloudsDisasterSprite = this.game.add.sprite(0, -200, 'clouds');
+    var cloudsDisasterSprite = this.game.add.sprite(animationOffset, -200, 'clouds');
     this.addAnimation(cloudsDisasterSprite, 'clouds');
 
-    var monsterDisasterSprite = this.game.add.sprite(0, -200, 'monster');
+    var monsterDisasterSprite = this.game.add.sprite(animationOffset, -200, 'monster');
     this.addAnimation(monsterDisasterSprite, 'monster');
 
     this.disasterAnimations = {
