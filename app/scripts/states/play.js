@@ -51,15 +51,17 @@ export default class Play extends Phaser.State {
       this.game.stage.addChild(this.planet);
       this.game.stage.addChild(this.powersHud);
 
-        this.vulcan = this.game.add.sprite(this.game.width-200, 30, 'vulcan');
+      this.vulcan = this.game.add.sprite(this.game.width-200, 30, 'vulcan');
 
-        this.leftKey = this.game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
-        this.rightKey = this.game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+      this.leftKey = this.game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+      this.rightKey = this.game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+      this.AKey = this.game.input.keyboard.addKey(Phaser.Keyboard.A);
+      this.DKey = this.game.input.keyboard.addKey(Phaser.Keyboard.D);
 
-        this.game.input.mouse.mouseWheelCallback = (e) => {
-            var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
-            this.planet.rotate(delta * 0.15);
-        };
+      this.game.input.mouse.mouseWheelCallback = (e) => {
+          var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+          this.planet.rotate(delta * -0.15);
+      };
     }
 
 
@@ -75,11 +77,11 @@ export default class Play extends Phaser.State {
             this.vulcan.frame = this.game.globalScore.failedDisastersCount;
         }
 
-        if (this.leftKey.isDown)
+        if (this.leftKey.isDown || this.AKey.isDown)
         {
             this.planet.rotate(-0.04);
         }
-        else if (this.rightKey.isDown)
+        else if (this.rightKey.isDown || this.DKey.isDown)
         {
             this.planet.rotate(0.04);
         }

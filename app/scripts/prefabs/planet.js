@@ -17,7 +17,7 @@ export default class Planet extends Phaser.Sprite {
   }
 
   rotate(value) {
-    this.rotation += 0.04;
+    this.rotation += value;
   }
   
 
