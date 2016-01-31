@@ -12,7 +12,7 @@ export default class Menu extends Phaser.State {
 
       //background
       this.background = this.game.add.image(0, 0, 'menu-bg');
-      this.background.scale.setTo(window.innerWidth / this.background.texture.width);
+      this.background.scale.setTo(window.innerWidth / this.background.texture.width, window.innerHeight / this.background.texture.height);
 
       //Mask
       this.mask = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY , 'mask');
