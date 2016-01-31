@@ -19,7 +19,7 @@ export default class Menu extends Phaser.State {
       this.mask.anchor.x = 0.5;
       this.mask.anchor.y = 0.5;
       this.mask.scale.setTo(0.4);
-      this.maskTween = this.add.tween(this.mask).from( { x: 20, rotation: 20 }, 200, Phaser.Easing.Bounce.Out, true);
+      this.maskTween = this.add.tween(this.mask).from( { y: 60, rotation: 720 }, 600, Phaser.Easing.Quadratic.InOut, true);
 
       //Play Button
       this.playBtn = this.game.add.button(this.game.world.centerX, this.game.world.height - 150, 'play-btn', this.startGame, this);
