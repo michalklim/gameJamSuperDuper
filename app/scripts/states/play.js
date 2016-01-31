@@ -49,17 +49,24 @@ export default class Play extends Phaser.State {
       });
       this.game.stage.addChild(this.powersHud);
 
-      //Volcano
-      this.game.add.sprite(this.game.width-350, 30, 'vulcan');
+      this.game.stage.addChild(this.planet);
+
+      this.vulcan = this.game.add.sprite(this.game.width-350, 30, 'vulcan');
     }
 
 
     update() {
         this.powersHud.updateScore(this.game.globalScore.miracles);
+
         if(this.game.globalScore.failedDisasterLimitReached()){
             this.disasters.stop();
             this.gameOver();
         }
+
+        if(this.vulcan.frame != this.game.globalScore.failedDisastersCount)
+        {
+            this.vulcan.frame = this.game.globalScore.failedDisastersCount;
+    }
     }
 
     buildVillages() {
@@ -84,22 +91,21 @@ export default class Play extends Phaser.State {
     }
 
     gameOver(){
-        //this.game.time.slowMotion = 3;
-        //this.overlay.visible = true;
-        //this.game.world.bringToTop(this.overlay);
-        //let timer = this.game.time.create(this.game, true);
-/*        /timer.add(3000, () => {
-            this.music.stop();
-            this.gameOverSound.play();
-            this.game.state.start('Over');
-        });
-        timer.start();*/
+
+        this.villages.removeAll();
+        this.planet.destroy(true);
+        this.powersHud.destroy(true);
+        this.vulcan.destroy(true);
+
       this.game.state.start('Over');
-      console.log("GAME OVER!");
+
     }
 
     render(){
       //this.game.debug.spriteInfo(this.overlay, 32, 32);
       this.game.debug.cameraInfo(this.game.camera,32,32);
+
+      var village = this.game.villages[0];
+      this.game.debug.spriteBounds(village);
     }
 }
