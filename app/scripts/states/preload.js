@@ -17,6 +17,9 @@ export default class Preload extends Phaser.State {
       this.load.image('mask', 'images/sprites/UI/mask.png');
       this.load.image('play-btn', 'images/sprites/UI/play-btn.png');
 
+      this.load.image('instr-bg', 'images/sprites/UI/instr.jpg');
+      this.load.image('cnt-btn', 'images/sprites/UI/continue.png');
+
       this.load.image('powerBtn-fire', 'images/sprites/UI/ogien.png');
       this.load.image('powerBtn-thunder', 'images/sprites/UI/piorun.png');
       this.load.image('powerBtn-wind', 'images/sprites/UI/wiatr.png');
