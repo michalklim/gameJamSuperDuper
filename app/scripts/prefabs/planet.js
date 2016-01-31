@@ -13,24 +13,12 @@ export default class Planet extends Phaser.Sprite {
     this.scale.setTo(this.targetDim / this.texture.width);
     this.anchor.setTo(0.5);
     this.game.physics.arcade.enable(this);
-    this.leftKey = this.game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
-    this.rightKey = this.game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
 
-    this.game.input.mouse.mouseWheelCallback = (e) => {
-      var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
-      this.rotation += delta * 0.15;
-    };
   }
 
-  update() {
-    if (this.leftKey.isDown)
-    {
-      this.rotation -= 0.04;
-    }
-    else if (this.rightKey.isDown)
-    {
-      this.rotation += 0.04;
-    }
+  rotate(value)
+  {
+    this.rotation += value;
   }
 
   getCenterCircle() {

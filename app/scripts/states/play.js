@@ -52,6 +52,14 @@ export default class Play extends Phaser.State {
       this.game.stage.addChild(this.powersHud);
 
         this.vulcan = this.game.add.sprite(this.game.width-200, 30, 'vulcan');
+
+        this.leftKey = this.game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+        this.rightKey = this.game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+
+        this.game.input.mouse.mouseWheelCallback = (e) => {
+            var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+            this.planet.rotate(delta * 0.15);
+        };
     }
 
 
@@ -63,10 +71,18 @@ export default class Play extends Phaser.State {
             this.gameOver();
         }
 
-        if(this.vulcan.frame != this.game.globalScore.failedDisastersCount)
-        {
+        if(this.vulcan.frame != this.game.globalScore.failedDisastersCount) {
             this.vulcan.frame = this.game.globalScore.failedDisastersCount;
-    }
+        }
+
+        if (this.leftKey.isDown)
+        {
+            this.planet.rotate(-0.04);
+        }
+        else if (this.rightKey.isDown)
+        {
+            this.planet.rotate(0.04);
+        }
     }
 
     buildVillages() {
