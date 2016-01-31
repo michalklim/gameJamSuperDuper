@@ -5,7 +5,7 @@ export default class Over extends Phaser.State {
     create() {
 
       this.background = this.game.add.image(0, 0, 'gameOver-bg');
-      this.background.scale.setTo(window.innerWidth / this.background.texture.width, window.innerHeight / this.background.texture.height);
+      this.background.scale.setTo(this.game.width / this.background.texture.width);
 
       this.gameOverTitle = this.game.add.bitmapText(this.game.world.centerX, this.game.world.centerY-200, 'desyrel', 'Game over',72);
 
