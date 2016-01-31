@@ -57,6 +57,8 @@ export default class Preload extends Phaser.State {
     }
 
     create() {
+      this.background = this.game.add.image(0, 0, 'menu-bg');
+      this.background.scale.setTo(window.innerWidth / this.background.texture.width, window.innerHeight / this.background.texture.height);
 
       this.loadingText = this.game.add.bitmapText(this.game.world.centerX, this.game.world.centerY,  'desyrel', 'Loading...',72);
       //this.loadingText.scale.setTo(0.2);
