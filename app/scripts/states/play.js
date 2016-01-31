@@ -24,29 +24,29 @@ export default class Play extends Phaser.State {
       this.planet = new Planet({
         game: this.game,
         x: this.world.centerX,
-        y: this.world.height * 1.5,
+        y: this.world.height * 1.4,
         asset: 'planet',
-          targetDim : window.innerWidth
+        targetDim : this.game.width
       });
       this.game.stage.addChild(this.planet);
 
-        this.innerClouds = new Planet({
-            game: this.game,
-            x: this.world.centerX,
-            y: this.world.height * 1.5,
-            asset: 'inner_clouds',
-            targetDim : window.innerWidth*1.2
-        });
-        this.game.stage.addChild(this.innerClouds);
+      this.innerClouds = new Planet({
+          game: this.game,
+          x: this.world.centerX,
+          y: this.world.height * 1.5,
+          asset: 'inner_clouds',
+          targetDim : this.game.width * 1.3
+      });
+      this.game.stage.addChild(this.innerClouds);
 
-        this.outerClouds = new Planet({
-            game: this.game,
-            x: this.world.centerX,
-            y: this.world.height * 1.5,
-            asset: 'outer_clouds',
-            targetDim : window.innerWidth*1.2
-        });
-        this.game.stage.addChild(this.outerClouds);
+      this.outerClouds = new Planet({
+          game: this.game,
+          x: this.world.centerX,
+          y: this.world.height * 1.5,
+          asset: 'outer_clouds',
+          targetDim : this.game.width * 1.3
+      });
+      this.game.stage.addChild(this.outerClouds);
 
       // add villages
       this.villages = this.add.group();
@@ -97,16 +97,16 @@ export default class Play extends Phaser.State {
         }
 
 		this.innerClouds.rotate(0.001);
-        this.outerClouds.rotate(0.0004);
+      this.outerClouds.rotate(0.0004);
 
-        if (this.leftKey.isDown || this.AKey.isDown)
-        {
-            this.planet.rotate(-0.04);
-        }
-        else if (this.rightKey.isDown || this.DKey.isDown)
-        {
-            this.planet.rotate(0.04);
-        }
+      if (this.leftKey.isDown || this.AKey.isDown)
+      {
+          this.planet.rotate(-0.04);
+      }
+      else if (this.rightKey.isDown || this.DKey.isDown)
+      {
+          this.planet.rotate(0.04);
+      }
     }
 
     buildVillages() {

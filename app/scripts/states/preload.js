@@ -52,16 +52,13 @@ export default class Preload extends Phaser.State {
       this.load.spritesheet('nativesRitual', 'images/sprites/animations/ritual.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
 
       this.game.load.bitmapFont('desyrel', 'images/sprites/UI/font.png', 'images/sprites/UI/font.xml');
-
-
     }
 
     create() {
       this.background = this.game.add.image(0, 0, 'menu-bg');
-      this.background.scale.setTo(window.innerWidth / this.background.texture.width, window.innerHeight / this.background.texture.height);
+      this.background.scale.setTo(this.game.width / this.background.texture.width);
 
       this.loadingText = this.game.add.bitmapText(this.game.world.centerX, this.game.world.centerY,  'desyrel', 'Loading...',72);
-      //this.loadingText.scale.setTo(0.2);
       this.loadingText.position.x -= this.loadingText.width /2;
 
       this.game.sound.setDecodedCallback([
