@@ -90,8 +90,7 @@ gulp.task('lint', lint('app/scripts/**/*.js'));
 gulp.task('lint:test', lint('test/spec/**/*.js', testLintOptions));
 
 gulp.task('html', () => {
-  return gulp.src('app/*.html'
-    .concat('app/*.ico'))
+  return gulp.src('app/*.html')
     .pipe(gulp.dest('dist'));
 });
 
