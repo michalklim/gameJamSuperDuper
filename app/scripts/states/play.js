@@ -86,18 +86,14 @@ export default class Play extends Phaser.State {
     }
 
     gameOver(){
-        //this.game.time.slowMotion = 3;
-        //this.overlay.visible = true;
-        //this.game.world.bringToTop(this.overlay);
-        //let timer = this.game.time.create(this.game, true);
-/*        /timer.add(3000, () => {
-            this.music.stop();
-            this.gameOverSound.play();
-            this.game.state.start('Over');
-        });
-        timer.start();*/
-      this.game.state.start('Over');
-      console.log("GAME OVER!");
+
+        this.villages.removeAll();
+        this.planet.destroy(true);
+        this.powersHud.destroy(true);
+        this.vulcan.destroy(true);
+
+        this.game.state.start('Over');
+
     }
 
     render(){
