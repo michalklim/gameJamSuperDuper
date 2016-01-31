@@ -9,7 +9,8 @@ export default class Village extends Phaser.Sprite {
     this.scale.setTo(0.8);
 
     var animationOffset = -150;
-    var fireDisasterSprite = this.game.add.sprite(animationOffset, -400, 'fire');
+
+    var fireDisasterSprite = this.game.add.sprite(animationOffset, -200, 'fire');
     this.addAnimation(fireDisasterSprite, 'fire');
 
     var locustDisasterSprite = this.game.add.sprite(animationOffset, -200, 'locust');
@@ -20,6 +21,17 @@ export default class Village extends Phaser.Sprite {
 
     var monsterDisasterSprite = this.game.add.sprite(animationOffset, -200, 'monster');
     this.addAnimation(monsterDisasterSprite, 'monster');
+
+    this.nativesRitualSprite = this.game.add.sprite(animationOffset, -200, 'nativesRitual');
+    this.addAnimation(this.nativesRitualSprite, 'nativesRitual');
+
+    this.nativesIdleSprite = this.game.add.sprite(animationOffset, -200, 'nativesIdle');
+    this.addAnimation(this.nativesIdleSprite, 'nativesIdle');
+
+    this.stopAnimation(fireDisasterSprite);
+    this.stopAnimation(locustDisasterSprite);
+    this.stopAnimation(cloudsDisasterSprite);
+    this.stopAnimation(monsterDisasterSprite);
 
     this.disasterAnimations = {
       fire: fireDisasterSprite,
@@ -41,7 +53,6 @@ export default class Village extends Phaser.Sprite {
     this.addChild(sprite);
     sprite.animations.add(key);
     sprite.animations.play(key, 10, true);
-    this.stopAnimation(sprite);
   }
 
   startDisaster(disasterAndMiracle) {
@@ -81,9 +92,13 @@ export default class Village extends Phaser.Sprite {
 
   startAnimation(animationSprite) {
     animationSprite.visible = true;
+    this.nativesIdleSprite.visible = false;
+    this.nativesRitualSprite.visible = true;
   }
 
   stopAnimation(animationSprite) {
     animationSprite.visible = false;
+    this.nativesIdleSprite.visible = true;
+    this.nativesRitualSprite.visible = false;
   }
 }

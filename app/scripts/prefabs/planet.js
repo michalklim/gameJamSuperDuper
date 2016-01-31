@@ -25,12 +25,11 @@ export default class Planet extends Phaser.Sprite {
   update() {
     if (this.leftKey.isDown)
     {
-      this.rotation -= 0.02;
-      console.log(this);
+      this.rotation -= 0.04;
     }
     else if (this.rightKey.isDown)
     {
-      this.rotation += 0.02;
+      this.rotation += 0.04;
     }
   }
 

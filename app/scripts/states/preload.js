@@ -16,7 +16,7 @@ export default class Preload extends Phaser.State {
       this.load.image('powerBtn-wind', 'images/sprites/UI/wiatr.png');
       this.load.image('powerBtn-water', 'images/sprites/UI/woda.png');
 
-      this.load.spritesheet('vulcan', 'images/sprites/wulkan_HUD.png', 331, 300);
+      this.load.spritesheet('vulcan', 'images/sprites/vulkan2.png', 203, 276);
 
       //Audio
       this.load.audio('fireSound', ['audio/sound/fire.mp3']);
@@ -42,6 +42,8 @@ export default class Preload extends Phaser.State {
       this.load.spritesheet('monster', 'images/sprites/animations/ufo_shit.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
       this.load.spritesheet('clouds', 'images/sprites/animations/rain.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
       this.load.spritesheet('locust', 'images/sprites/animations/szarancza.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
+      this.load.spritesheet('nativesIdle', 'images/sprites/animations/idle.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
+      this.load.spritesheet('nativesRitual', 'images/sprites/animations/ritual.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
     }
 
     create() {
