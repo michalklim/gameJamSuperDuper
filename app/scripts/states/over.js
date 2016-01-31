@@ -4,11 +4,8 @@ export default class Over extends Phaser.State {
 
     create() {
 
-        this.gameOverTitle = new Phaser.Text(this.game, this.game.world.centerX, this.game.world.centerY-200, 'Game over', {
-            font: '36px Tahoma',
-            fill: 'white',
-            align: 'center'
-        });
+        this.gameOverTitle = this.game.add.bitmapText(this.game.world.centerX, this.game.world.centerY-200, 'desyrel', 'Game over',72);
+        
         this.gameOverTitle.anchor.setTo(0.5);
 
         this.start = new TextButton({
