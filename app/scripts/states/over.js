@@ -31,5 +31,8 @@ export default class Over extends Phaser.State {
         this.gameOverPanel = this.add.group();
         this.gameOverPanel.add(this.gameOverTitle);
         this.gameOverPanel.add(this.start);
+
+        this.scoreText = this.game.add.bitmapText(this.game.world.centerX , this.game.world.centerY-100, 'desyrel', 'Score: '+this.game.globalScore.miracles,72);
+        this.scoreText.x -= this.scoreText.width/2;
     }
 }
