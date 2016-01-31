@@ -47,9 +47,9 @@ export default class Play extends Phaser.State {
           game: this.game,
           x: this.world.centerX
       });
-      this.game.stage.addChild(this.powersHud);
 
       this.game.stage.addChild(this.planet);
+      this.game.stage.addChild(this.powersHud);
 
       this.vulcan = this.game.add.sprite(this.game.width-350, 30, 'vulcan');
     }
@@ -75,6 +75,7 @@ export default class Play extends Phaser.State {
       let angleScope = 360/this.villageNumber;
       return _.map(_.range(this.villageNumber), (number) => {
 
+        let asset = 'village_' + _.random(1, 3);
         let angle = _.random(number * angleScope, (number + 1) * angleScope) * (Math.PI / 180);
         let x = planetCircle.x + Math.cos(angle)*planetCircle.r;
         let y = planetCircle.y + Math.sin(angle)*planetCircle.r;
@@ -83,7 +84,8 @@ export default class Play extends Phaser.State {
           game: this.game,
           x: x,
           y: y,
-          planetCircle: planetCircle
+          planetCircle: planetCircle,
+          asset: asset
         };
 
         return new Village(sets);
@@ -96,6 +98,7 @@ export default class Play extends Phaser.State {
         this.planet.destroy(true);
         this.powersHud.destroy(true);
         this.vulcan.destroy(true);
+        this.music.destroy(true);
 
       this.game.state.start('Over');
 

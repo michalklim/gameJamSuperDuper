@@ -13,7 +13,6 @@ var DisastersAndMiracles = [
   CreateDisasterMiracle("clouds","wind"),
   CreateDisasterMiracle("monster","thunderbolt")];
 
-
 export default function Disaster(villages) {
 
   var _villages = villages;
@@ -28,11 +27,11 @@ export default function Disaster(villages) {
   };
 
   var pickDisasterAndMiracle = function(){
-    return _disasters[Math.floor((Math.random() * _disasters.length))]
+    return _disasters[_.random(0, _disasters.length - 1)];
   };
 
   var pickVillageId = function() {
-    return Math.floor((Math.random() * _villages.length));
+    return _.random(0, _villages.length - 1);
   };
 
   var pickVillage = function(){
