@@ -43,7 +43,8 @@ export default class Play extends Phaser.State {
       this.disasters.run();
 
       this.game.stage.addChild(this.planet);
-        this.game.add.sprite(this.game.width-350, 30, 'vulcan');
+
+      this.vulcan = this.game.add.sprite(this.game.width-350, 30, 'vulcan');
 
       this.disasters.run();
     }
@@ -51,9 +52,15 @@ export default class Play extends Phaser.State {
 
     update() {
         this.powersHud.updateScore(this.game.globalScore.miracles);
+
         if(this.game.globalScore.failedDisasterLimitReached()){
             this.disasters.stop();
             this.gameOver();
+        }
+
+        if(this.vulcan.frame != this.game.globalScore.failedDisastersCount)
+        {
+            this.vulcan.frame = this.game.globalScore.failedDisastersCount;
         }
     }
 
