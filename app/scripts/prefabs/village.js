@@ -1,14 +1,12 @@
 export default class Village extends Phaser.Sprite {
 
-  constructor({ game, x, y, planetCircle}) {
-    var asset = 'village';
+  constructor({ game, x, y, planetCircle, asset}) {
 
     super(game, x, y, asset, 1);
 
     this.game = game;
     this.anchor.setTo(0.5);
-    //this.targetDim = 500;
-    //this.scale.setTo(this.targetDim / this.texture.width);
+    this.scale.setTo(0.8);
 
     var fireDisasterSprite = this.game.add.sprite(0, -200, 'fire');
     this.addAnimation(fireDisasterSprite, 'fire');
