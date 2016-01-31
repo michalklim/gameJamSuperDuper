@@ -11,6 +11,9 @@ export default class PowersBtn extends Phaser.Sprite {
         this.powerSound = powerSound;
         this.game = game;
 
+        this.game.world.bringToTop(this);
+
+
         this.scale.setTo(0.25);
         this.inputEnabled = true;
         this.input.enableDrag(true);
