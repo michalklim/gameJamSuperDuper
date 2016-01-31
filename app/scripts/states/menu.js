@@ -8,24 +8,27 @@ export default class Menu extends Phaser.State {
 
     create() {
 
-        this.music = this.game.add.audio('menuMusic');
+      this.music = this.music = this.game.sound.play('menuMusic');
+      this.music.loopFull();
 
-        this.start = new TextButton({
-            game: this.game,
-            x: this.game.world.centerX,
-            y: this.game.world.centerY,
-            asset: '',
-            overFrame:2,
-            outFrame: 1,
-            downFrame: 0,
-            upFrame: 1,
-            label: 'Play!',
-            style: {
-                font: '56px Verdana',
-                fill: 'Pink',
-                align: 'center'
-            }
-        });
+      this.start = new TextButton({
+          game: this.game,
+          x: this.game.world.centerX,
+          y: this.game.world.centerY,
+          asset: '',
+          overFrame:2,
+          outFrame: 1,
+          downFrame: 0,
+          upFrame: 1,
+          label: 'Play!',
+          style: {
+              font: '56px Verdana',
+              fill: 'Pink',
+              align: 'center'
+          }
+      });
+
+      this.start.setDownSound(this.game.sound.play('menuDown'));
 
       this.title = new Phaser.Text(this.game, this.game.world.centerX, this.game.world.centerY-50, 'Axis Mundi Ultimate', {
         font: '46px Tahoma',
@@ -35,23 +38,13 @@ export default class Menu extends Phaser.State {
 
       this.title.anchor.setTo(0.5);
 
-        this.btnOverSound = this.add.sound('menuOver');
-        this.btnOutSound = this.add.sound('menuOut');
-        this.btnDownSound = this.add.sound('menuDown');
+      this.start.onInputUp.add(()=>{
+        this.music.stop();
+        this.state.start('Play');
+      });
 
-        this.start.setOverSound(this.btnOverSound);
-        this.start.setOutSound(this.btnOutSound);
-        this.start.setDownSound(this.btnDownSound);
-
-        this.start.onInputUp.add(()=>{
-            this.music.stop();
-            this.state.start('Play');
-        });
-
-        this.menuPanel = this.add.group();
-        this.menuPanel.add(this.title);
-        this.menuPanel.add(this.start);
-
-        this.music.loopFull();
+      this.menuPanel = this.add.group();
+      this.menuPanel.add(this.title);
+      this.menuPanel.add(this.start);
     }
 }

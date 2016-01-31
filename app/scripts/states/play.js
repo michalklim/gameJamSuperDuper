@@ -9,8 +9,12 @@ export default class Play extends Phaser.State {
     create() {
       // constants
       this.villageNumber = 8;
-
       this.game.globalScore = new GlobalScore();
+
+      //music
+      this.music = this.game.sound.play('playMusic');
+      this.music.volume -= 0.5;
+      this.music.loopFull();
 
       //background
       this.background = this.game.add.image(0, 0, 'bg');
@@ -23,6 +27,7 @@ export default class Play extends Phaser.State {
         y: this.world.height * 1.5,
         asset: 'planet'
       });
+      this.game.stage.addChild(this.planet);
 
       // add villages
       this.villages = this.add.group();
@@ -31,21 +36,21 @@ export default class Play extends Phaser.State {
       this.game.villages = vlgs;
 
       this.villages.addMultiple(vlgs);
-      this.disasters = Disaster(vlgs);
-
       this.planet.addChild(this.villages);
 
+      //disasters
+      this.disasters = Disaster(vlgs);
+      this.disasters.run();
+
+      //Powers Hud
       this.powersHud = new PowersHud({
           game: this.game,
           x: this.world.centerX
       });
       this.game.stage.addChild(this.powersHud);
-      this.disasters.run();
 
-      this.game.stage.addChild(this.planet);
-        this.game.add.sprite(this.game.width-350, 30, 'vulcan');
-
-      this.disasters.run();
+      //Volcano
+      this.game.add.sprite(this.game.width-350, 30, 'vulcan');
     }
 
 

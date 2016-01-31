@@ -13,32 +13,21 @@ export default class Preload extends Phaser.State {
 
       this.load.spritesheet('vulcan', 'images/sprites/wulkan_HUD.png', 331, 300);
 
-      this.load.audio('fireSound', ['audio/sound/fire.mp3']);
-      this.load.audio('waterSound', ['audio/sound/woda.mp3']);
-      this.load.audio('thunderSound', ['audio/sound/piorun.mp3']);
-      this.load.audio('earthSound', ['audio/sound/ziemia.mp3']);
-      this.load.audio('windSound', ['audio/sound/wiatr.mp3']);
-
       //Audio
       this.load.audio('fireSound', ['audio/sound/fire.mp3']);
       this.load.audio('waterSound', ['audio/sound/woda.mp3']);
       this.load.audio('thunderSound', ['audio/sound/piorun.mp3']);
-      this.load.audio('earthSound', ['audio/sound/ziemia.mp3']);
       this.load.audio('windSound', ['audio/sound/wiatr.mp3']);
+
+      //General Audio
       this.load.audio('playMusic', ['audio/music/play.mp3']);
+      this.game.add.audio('playMusic');
+
       this.load.audio('menuMusic', ['audio/music/menu.mp3']);
+      this.game.add.audio('menuMusic');
 
-      this.load.audio('menuOver', ['audio/sound/menu-over.mp3']);
-      this.load.audio('menuOut', ['audio/sound/menu-out.mp3']);
       this.load.audio('menuDown', ['audio/sound/menu-click.mp3']);
-
-      this.load.audio('bulletHit', ['audio/sound/bullet-hit.mp3']);
-      this.load.audio('enemyShot', ['audio/sound/enemy-shot.mp3']);
-      this.load.audio('enemyExplosion', ['audio/sound/enemy-explosion.mp3']);
-      this.load.audio('playerShot', ['audio/sound/player-shot.mp3']);
-      this.load.audio('playerExplosion', ['audio/sound/player-explosion.mp3']);
-
-      this.load.audio('gameOver', ['audio/sound/game-over.mp3']);
+      this.game.add.audio('menuDown');
 
       var disasterFrameHeight = 40;
       var disasterFrameWidth = 40;
@@ -50,7 +39,17 @@ export default class Preload extends Phaser.State {
     }
 
     create() {
-        this.state.start('Menu');
+      this.game.sound.setDecodedCallback([
+        'playMusic',
+        'menuMusic',
+        'fireSound',
+        'waterSound',
+        'thunderSound',
+        'windSound',
+        'menuDown'
+      ], this.showMenu, this);
     }
-
+    showMenu() {
+      this.state.start('Menu');
+    }
 }
