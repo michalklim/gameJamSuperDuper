@@ -40,6 +40,9 @@ export default class Preload extends Phaser.State {
       this.load.audio('successSound', ['audio/sound/udalosie.mp3']);
       this.game.add.audio('successSound');
 
+      this.load.audio('failSound', ['audio/sound/poof.mp3']);
+      this.game.add.audio('failSound');
+
       this.load.audio('game-over', ['audio/sound/gejover.mp3']);
       this.game.add.audio('game-over');
 
@@ -77,6 +80,7 @@ export default class Preload extends Phaser.State {
         'windSound',
         'menuDown',
         'successSound',
+        'failSound',
         'game-over'
       ], this.showMenu, this);
     }

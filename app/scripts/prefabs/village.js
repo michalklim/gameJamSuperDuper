@@ -74,6 +74,9 @@ export default class Village extends Phaser.Sprite {
       this.game.globalScore.incrementMiracles();
       this.stopAnimation(this.disasterAnimations[this.disasterAndMiracle.disaster]);
       this.isSafe = true;
+      this.game.sound.play('successSound');
+    } else {
+      this.game.sound.play('failSound');
     }
   }
 
