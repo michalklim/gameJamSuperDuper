@@ -51,7 +51,7 @@ export default class Play extends Phaser.State {
       this.game.stage.addChild(this.planet);
       this.game.stage.addChild(this.powersHud);
 
-      this.vulcan = this.game.add.sprite(this.game.width-350, 30, 'vulcan');
+        this.vulcan = this.game.add.sprite(this.game.width-200, 30, 'vulcan');
     }
 
 
