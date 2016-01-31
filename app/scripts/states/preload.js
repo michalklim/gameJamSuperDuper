@@ -32,21 +32,15 @@ export default class Preload extends Phaser.State {
       this.load.audio('menuOut', ['audio/sound/menu-out.mp3']);
       this.load.audio('menuDown', ['audio/sound/menu-click.mp3']);
 
-      this.load.audio('bulletHit', ['audio/sound/bullet-hit.mp3']);
-      this.load.audio('enemyShot', ['audio/sound/enemy-shot.mp3']);
-      this.load.audio('enemyExplosion', ['audio/sound/enemy-explosion.mp3']);
-      this.load.audio('playerShot', ['audio/sound/player-shot.mp3']);
-      this.load.audio('playerExplosion', ['audio/sound/player-explosion.mp3']);
-
       this.load.audio('gameOver', ['audio/sound/game-over.mp3']);
 
-      var disasterFrameHeight = 40;
-      var disasterFrameWidth = 40;
+      var disasterFrameHeight = 400;
+      var disasterFrameWidth = 400;
       var disasterFrameMax = 10;
-      //this.load.spritesheet('fire', 'assets/sprites/metalslug_mummy37xdisasterFrameWidth.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
-      //this.load.spritesheet('monster', 'assets/sprites/metalslug_mummy37xdisasterFrameWidth.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
-      //this.load.spritesheet('clouds', 'assets/sprites/metalslug_mummy37xdisasterFrameWidth.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
-      //this.load.spritesheet('locust', 'assets/sprites/metalslug_mummy37xdisasterFrameWidth.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
+      this.load.spritesheet('fire', 'images/sprites/animations/rain.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
+      this.load.spritesheet('monster', 'images/sprites/animations/rain.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
+      this.load.spritesheet('clouds', 'images/sprites/animations/rain.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
+      this.load.spritesheet('locust', 'images/sprites/animations/rain.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
     }
 
     create() {

@@ -6,10 +6,20 @@ export default class Village extends Phaser.Sprite {
     super(game, x, y, asset, 1);
 
     this.game = game;
-
     this.anchor.setTo(0.5);
     //this.targetDim = 500;
     //this.scale.setTo(this.targetDim / this.texture.width);
+
+    var disasterSprite = this.game.add.sprite(0, -200, 'fire');
+    this.addChild(disasterSprite);
+
+    disasterSprite.animations.add('fire');
+    disasterSprite.animations.add('locust', 10, true);
+    disasterSprite.animations.add('clouds', 10, true);
+    disasterSprite.animations.add('monster', 10, true);
+
+    disasterSprite.animations.play('fire', 10, true);
+
 
     this.game.physics.arcade.enable(this);
     this.rotation = game.physics.arcade.angleToXY(this, planetCircle.x, planetCircle.y) - 90 * (Math.PI / 180);
@@ -18,11 +28,6 @@ export default class Village extends Phaser.Sprite {
     this.natives.enableBody = true;
 
     this.isSafe = false;
-
-    this.animations.add('fire', 10, true);
-    this.animations.add('locust', 10, true);
-    this.animations.add('clouds', 10, true);
-    this.animations.add('monster', 10, true);
   }
 
   startDisaster(disasterAndMiracle) {
