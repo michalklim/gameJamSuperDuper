@@ -10,16 +10,24 @@ export default class Village extends Phaser.Sprite {
     //this.targetDim = 500;
     //this.scale.setTo(this.targetDim / this.texture.width);
 
-    var disasterSprite = this.game.add.sprite(0, -200, 'fire');
-    this.addChild(disasterSprite);
+    var fireDisasterSprite = this.game.add.sprite(0, -200, 'fire');
+    this.addAnimation(fireDisasterSprite, 'fire');
 
-    disasterSprite.animations.add('fire');
-    disasterSprite.animations.add('locust', 10, true);
-    disasterSprite.animations.add('clouds', 10, true);
-    disasterSprite.animations.add('monster', 10, true);
+    var locustDisasterSprite = this.game.add.sprite(0, -200, 'locust');
+    this.addAnimation(locustDisasterSprite, 'locust');
 
-    disasterSprite.animations.play('fire', 10, true);
+    var cloudsDisasterSprite = this.game.add.sprite(0, -200, 'clouds');
+    this.addAnimation(cloudsDisasterSprite, 'clouds');
 
+    var monsterDisasterSprite = this.game.add.sprite(0, -200, 'monster');
+    this.addAnimation(monsterDisasterSprite, 'monster');
+
+    this.disasterAnimations = {
+      fire: fireDisasterSprite,
+      locust: locustDisasterSprite,
+      clouds: cloudsDisasterSprite,
+      monster: monsterDisasterSprite
+    };
 
     this.game.physics.arcade.enable(this);
     this.rotation = game.physics.arcade.angleToXY(this, planetCircle.x, planetCircle.y) - 90 * (Math.PI / 180);
@@ -30,21 +38,31 @@ export default class Village extends Phaser.Sprite {
     this.isSafe = false;
   }
 
+  addAnimation(sprite, key){
+    this.addChild(sprite);
+    sprite.animations.add(key);
+    sprite.animations.play(key, 10, true);
+    this.stopAnimation(sprite);
+  }
+
   startDisaster(disasterAndMiracle) {
     this.isSafe = false;
     this.disasterAndMiracle = disasterAndMiracle;
-    this.animations.play(disasterAndMiracle.mirracle);
+    var name = disasterAndMiracle.disaster;
+
+    this.startAnimation(this.disasterAnimations[name]);
   }
 
   stopDisaster(miracle) {
-    console.log("stop disaster" + miracle);
     if(_.isUndefined(this.disasterAndMiracle)) return;
 
     if(_.isNull(this.disasterAndMiracle)) return;
 
     if(miracle === this.disasterAndMiracle.miracle){
+      console.log("happy miracle: " + miracle);
+
+      this.stopAnimation(this.disasterAnimations[this.disasterAndMiracle.disaster]);
       this.isSafe = true;
-      this.animations.stop();
     }
   }
 
@@ -52,10 +70,21 @@ export default class Village extends Phaser.Sprite {
      if(this.isSafe) {
        this.game.globalScore.incrementMiracles();
        console.log("Village is safe");
-       return;
+     } else {
+       console.log("Village has bad luck");
+       this.game.globalScore.incrementFailedDisasters();
      }
 
-    console.log("Village has bad luck");
-    this.game.globalScore.incrementFailedDisasters();
+    _.forEach(Object.keys(this.disasterAnimations), (name) => {
+      this.stopAnimation(this.disasterAnimations[name]);
+    });
+  }
+
+  startAnimation(animationSprite) {
+    animationSprite.visible = true;
+  }
+
+  stopAnimation(animationSprite) {
+    animationSprite.visible = false;
   }
 }

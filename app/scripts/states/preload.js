@@ -34,10 +34,10 @@ export default class Preload extends Phaser.State {
       var disasterFrameHeight = 400;
       var disasterFrameWidth = 400;
       var disasterFrameMax = 10;
-      this.load.spritesheet('fire', 'images/sprites/animations/rain.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
-      this.load.spritesheet('monster', 'images/sprites/animations/rain.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
+      this.load.spritesheet('fire', 'images/sprites/animations/fire.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
+      this.load.spritesheet('monster', 'images/sprites/animations/ufo_shit.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
       this.load.spritesheet('clouds', 'images/sprites/animations/rain.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
-      this.load.spritesheet('locust', 'images/sprites/animations/rain.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
+      this.load.spritesheet('locust', 'images/sprites/animations/szarancza.png',disasterFrameHeight, disasterFrameWidth, disasterFrameMax);
     }
 
     create() {
