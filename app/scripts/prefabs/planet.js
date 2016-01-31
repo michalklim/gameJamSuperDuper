@@ -18,7 +18,7 @@ export default class Planet extends Phaser.Sprite {
 
     this.game.input.mouse.mouseWheelCallback = (e) => {
       var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
-      this.rotation += delta * 0.2;
+      this.rotation += delta * 0.15;
     };
   }
 
