@@ -21,7 +21,7 @@ export default class PowersHud extends Phaser.Group {
     }
 
     addScoreText() {
-        this.scoreText = this.game.add.bitmapText(0, 0, 'desyrel', 'Score: 0',72);
+        this.scoreText = this.game.add.bitmapText(40, 40, 'desyrel', 'Score: 0',72);
     }
 
     addPowers() {

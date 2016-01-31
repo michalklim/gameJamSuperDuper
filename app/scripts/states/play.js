@@ -18,7 +18,7 @@ export default class Play extends Phaser.State {
 
       //background
       this.background = this.game.add.image(0, 0, 'bg');
-      this.background.scale.setTo(window.innerWidth / this.background.texture.width);
+      this.background.scale.setTo(this.game.width / this.background.texture.width);
 
       //planet
       this.planet = new Planet({

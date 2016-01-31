@@ -5,8 +5,6 @@ export default class Boot extends Phaser.State {
     }
 
     create() {
-        this.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
-
         this.scale.pageAlignHorizontally = true;
         this.scale.pageAlignVertically = true;
 
