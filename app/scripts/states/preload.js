@@ -21,6 +21,8 @@ export default class Preload extends Phaser.State {
       this.load.image('powerBtn-thunder', 'images/sprites/UI/piorun.png');
       this.load.image('powerBtn-wind', 'images/sprites/UI/wiatr.png');
       this.load.image('powerBtn-water', 'images/sprites/UI/woda.png');
+      this.load.image('tryAgain', 'images/sprites/UI/skip kopia.png');
+      this.load.image('gameOver-bg', 'images/sprites/UI/gameover.jpg');
 
       this.load.spritesheet('vulcan', 'images/sprites/vulkan2.png', 203, 276);
 
